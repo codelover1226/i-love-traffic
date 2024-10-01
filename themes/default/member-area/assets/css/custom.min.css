@@ -1,0 +1,53 @@
+.bannerFrameWeb-468-60 {
+    width: 468px;
+    height: 60px;
+    position: relative;
+    margin: auto;
+
+}
+.bannerFrameWeb-160-600 {
+    width: 160px;
+    height: 600px;
+    position: relative;
+    margin: auto;
+
+}
+.bannerFrameWeb-728-90 {
+    width: 728px;
+    height: 90px;
+    position: relative;
+    margin: auto;
+
+}
+.bannerFrameWeb-600-400 {
+    width: 600px;
+    height: 400px;
+    position: relative;
+    margin: auto;
+
+}
+.bannerFrameWeb-125-125 {
+    width: 125px;
+    height: 125px;
+    position: relative;
+    margin: auto;
+
+}
+.adByBottom {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    padding: 2px;
+    background: rgb(46, 6, 45);
+    background: linear-gradient(90deg, rgba(46, 6, 45, 1) 0%, rgba(121, 19, 9, 1) 100%, rgba(13, 35, 89, 1) 100%, rgba(22, 49, 55, 1) 100%);
+    color: #ffffff;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-top-left-radius: 3px;
+}
+.header-profile-user {
+    object-fit: contain;
+}
+.avatar-xl {
+    object-fit: contain;
+}

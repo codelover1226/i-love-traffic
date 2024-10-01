@@ -1,0 +1,165 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #072380;
+    background-size: cover;
+    position: relative;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.overlay {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    z-index: 1;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+   
+    background-color: #072380;
+    position: relative;
+    z-index: 3; /* Above the overlay */
+}
+
+.navbar a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.container {
+    min-height: calc(100% - 60px); /* Adjust for navbar height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1; /* Above the overlay */
+}
+
+.login-form {
+    width: 400px; /* Increased width */
+    background: rgba(255, 255, 255, 0.8);
+    padding: 50px 40px 40px 40px; /* Adjusted padding */
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-circle {
+    width: 100px;
+    height: 100px;
+    background: #010719;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -60px; /* Adjusted position */
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden; /* Ensures content does not overflow the circular area */
+}
+
+.logo-circle img {
+    max-width: 80%; /* Adjust the logo size to fit within the circle */
+    max-height: 80%; /* Maintain the aspect ratio */
+    object-fit: contain; /* Ensures the image is scaled correctly */
+}
+
+.alert {
+    color: red;
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="password"] , input[type="email"] {
+    padding: 10px 0px 10px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4361ee;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #324cdd;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 10px;
+    color: #4361ee;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.banner-row {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    width: 100%;
+    max-width: 400px;
+}
+
+.banner {
+    width: 468px;
+    height: 60px;
+    background-color: #ddd; /* Placeholder for banners */
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 3; /* Ensure footer is above overlay */
+}
+
+.alert-box {
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.alert-box.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-box.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

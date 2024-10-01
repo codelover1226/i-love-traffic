@@ -1,0 +1,160 @@
+<html>
+<head><meta charset="us-ascii">
+</head>
+<body>
+<p>&nbsp;
+<p></p>
+</p>
+</body>
+</html>
+<p><br />
+<title></title>
+</p>
+<link href="https://fonts.googleapis.com/css?family=Bad Script" rel="stylesheet" />
+<style type="text/css">*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+body{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height:100vh;
+  background: #030E33;
+  gap: 20px;
+}
+#text,
+    #shadow {
+        position: absolute;
+        margin:0;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 5em;
+        letter-spacing: 15px;
+        font-family: Bad Script;
+        color: #fff;
+    }
+
+    #text {
+        color: #333
+    }
+
+    #shadow {
+        text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+    }
+
+   #glow {
+        animation: neon1 linear infinite 2s;
+        will-change: opacity;
+    }
+
+    #blink {
+        animation: blink linear infinite 2s;
+    }
+
+
+    @keyframes neon1 {
+        20% {
+            opacity: 1;
+        }
+        80% {
+            opacity: 0.6;
+        }
+    }
+
+
+    @keyframes blink {
+        70% {
+            opacity: 1;
+        }
+        79% {
+            opacity: 0;
+        }
+        81% {
+            opacity: 1;
+        }
+        82% {
+            opacity: 0;
+        }
+        83% {
+            opacity: 1;
+        }
+        92% {
+            opacity: 0;
+        }
+        92.5% {
+            opacity: 1;
+        }
+    }
+.loader{
+  margin-top: 150px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  background: rgb(50,50,50);
+  overflow: hidden;
+  font-size: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+.loader::before{
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(var(--clr), transparent, transparent);
+  animation: animate 1.5s linear infinite;
+}
+.loader::after{
+  content:"";
+  position: absolute;
+  inset: 2px;
+  background: rgba(50,50,50,0.9);
+}
+h1{
+  position: absolute;
+  z-index: 1000;
+  
+}
+@keyframes animate{
+  0%{
+    transform: translate(-150px, -150px);
+  }
+  25%{
+    transform: translate(0px, -150px);
+  }
+  50%{
+    transform: translate(0px, 0px);
+  }
+  75%{
+    transform: translate(-150px, 0px);
+  }
+  100%{
+    transform: translate(-150px, -150px);
+  }
+}
+</style>
+<link href="https://fonts.googleapis.com/css?family=Bad Script" rel="stylesheet" />
+<p id="shadow"><span id="glow">I-Love </span><span id="blink">Traffic</span></p>
+
+<div class="loader" style="--clr: RGB(255, 165, 0)">
+<h1 style="text-align: center;"><iframe frameborder="0" height="125" hspace="0" marginheight="0" marginwidth="0" scrolling="no" src="https://i-lovetraffic.online/banner-surfer.php?size=small&amp;user=" vspace="0" width="125"></iframe></h1>
+</div>
+
+<div class="loader" style="--clr: RGB(135, 206, 235);">
+<h1 style="text-align: center;"><iframe frameborder="0" height="125" hspace="0" marginheight="0" marginwidth="0" scrolling="no" src="https://i-lovetraffic.online/banner-surfer.php?size=small&amp;user=" vspace="0" width="125"></iframe></h1>
+</div>
+
+<div class="loader" style="--clr: RGB(255, 215, 0);">
+<h1 style="text-align: center;"><iframe frameborder="0" height="125" hspace="0" marginheight="0" marginwidth="0" scrolling="no" src="https://i-lovetraffic.online/banner-surfer.php?size=small&amp;user=" vspace="0" width="125"></iframe></h1>
+</div>
+
+<div class="loader" style="--clr: RGB(72, 184, 177);">
+<h1 style="text-align: center;"><iframe frameborder="0" height="125" hspace="0" marginheight="0" marginwidth="0" scrolling="no" src="https://i-lovetraffic.online/banner-surfer.php?size=small&amp;user=" vspace="0" width="125"></iframe></h1>
+</div>

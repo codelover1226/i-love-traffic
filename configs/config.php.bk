@@ -1,0 +1,10 @@
+<?php
+define('HOST', 'localhost');
+define('DATABASE', 'ilovetrafficonl_ilovedb');
+define('USER', 'ilovetrafficonl_iloveuser');
+define('PASS', 'fxbW@Bg#pZ=L');
+define('SMTP_HOST', 'i-lovetraffic.online');
+define('SMTP_PORT', '465');
+define('SMTP_PROTOCOL', 'ssl');
+define('SMTP_USER', 'send@i-lovetraffic.online');
+define('SMTP_PASS', 'WGrr--Y0Q78X');
