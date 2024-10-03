@@ -24,6 +24,9 @@
                 <a href="emails.php?action=auto-mail" class="nav-link" data-key="t-chat">Update Auto</a>
             </li>
             <li class="nav-item">
+                <a href="received-mails.php" class="nav-link" data-key="t-chat">Received Emails</a>
+            </li>
+            <li class="nav-item">
                 <a href="unread-mails.php" class="nav-link" data-key="t-chat">Unread Emails</a>
             </li>
         </ul>

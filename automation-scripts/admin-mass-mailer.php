@@ -1,14 +1,4 @@
 <?php
-/*
- *
- *
- *          Author          :   Noman Prodhan
- *          Email           :   hello@nomantheking.com
- *          Websites        :   www.nomantheking.com    www.nomanprodhan.com    www.nstechvalley.com
- *
- *
- */
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

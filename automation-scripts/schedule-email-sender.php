@@ -1,13 +1,4 @@
 <?php
-/*
- *
- *
- *          Author          :   Noman Prodhan
- *          Email           :   hello@nomantheking.com
- *          Websites        :   www.nomantheking.com    www.nomanprodhan.com    www.nstechvalley.com
- *
- *
- */
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -111,20 +102,20 @@ if (!empty($emailQueue)) {
                     $emailBody .= " " . $siteSettings['site_title'];
                     $emailBody .= " | Powered By i-lovetraffic.online 1315 Piedmont Rd #32896, San Jose, CA 95132";
                     
-                    $profileSection = '<table cellpadding="0" cellspacing="0" width="600" border="0" style="min-width: 600px;" dir="ltr" class="st-Copy st-Copy--caption st-Width st-Width--mobile">
+                    $profileSection = '<table cellpadding="0" cellspacing="0" width="600" border="0" style="min-width: 600px; width: 100%;" dir="ltr" class="st-Copy st-Copy--caption st-Width st-Width--mobile">
                             <tbody>
                                 <tr>
                                     <td height="156" width="252" valign="bottom" align="right" style="background-color: #f9f9f9; border: 0; border-collapse: collapse; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 0; line-height: 0px; mso-line-height-rule: exactly; background-size: 100% 100%; border-top-left-radius: 5px;" class="Header-left Target"><a rel="noopener" href="https://i-lovetraffic.online" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; outline: 0; text-decoration: none;"> <img height="156" width="252" alt="" src="https://stripe-images.s3.amazonaws.com/notifications/hosted/20180110/Header/Left.png" style="display: block; border: 0; line-height: 100%; width: 100%;"> </a></td>
-                                    <td height="156" valign="bottom" align="center" style="background-color: #f9f9f9; border: 0; border-collapse: collapse; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 0; line-height: 0px; mso-line-height-rule: exactly; background-size: 100% 100%; width: 96px !important;" class="Header-icon Target"><a rel="noopener" href="https://i-lovetraffic.online" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; outline: 0; text-decoration: none;"> <img height="156" width="96" alt="" src='.$membersController->gravatar($$senderDetails['email'], $siteSettingsData['installation_url']).' style="display: block; border: 0; height: 96px; border-radius: 100%"> </a></td>
+                                    <td height="156" valign="bottom" align="center" style="background-color: #f9f9f9; border: 0; border-collapse: collapse; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 0; line-height: 0px; mso-line-height-rule: exactly; background-size: 100% 100%; width: 96px !important;" class="Header-icon Target"><a rel="noopener" href="https://i-lovetraffic.online" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; outline: 0; text-decoration: none;"> <img height="156" width="96" alt="" src='.$membersController->gravatar($senderDetails['email'], $siteSettingsData['installation_url']).' style="display: block; border: 0; height: 96px; border-radius: 100%"> </a></td>
                                     <td height="156" width="252" valign="bottom" align="left" style="background-color: #f9f9f9; border: 0; border-collapse: collapse; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 0; line-height: 0px; mso-line-height-rule: exactly; background-size: 100% 100%; border-top-right-radius: 5px;" class="Header-right Target"><a rel="noopener" href="https://i-lovetraffic.online" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; outline: 0; text-decoration: none;"> <img height="156" width="252" alt="" src="https://stripe-images.s3.amazonaws.com/notifications/hosted/20180110/Header/Right.png" style="display: block; border: 0; line-height: 100%; width: 100%;"> </a></td>
                                 </tr>
                             </tbody>
                         </table>
-                        <table cellpadding="0" cellspacing="0" width="600" border="0" style="min-width: 600px; background-color: #ffffff;" class="st-Copy st-Copy--caption st-Width st-Width--mobile">
+                        <table cellpadding="0" cellspacing="0" width="600" border="0" style="min-width: 600px; background-color: #ffffff; width: 100%;" class="st-Copy st-Copy--caption st-Width st-Width--mobile">
                             <tbody>
                                 <tr>
                                     <td align="center" style="border: 0; border-collapse: collapse; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; width: 472px; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, \'Helvetica Neue\', Ubuntu, sans-serif; mso-line-height-rule: exactly; vertical-align: middle; color: #32325d; font-size: 24px; line-height: 32px;" class="Content Title-copy Font Font--title">
-                                        '.$senderDetails['first_name'].$senderDetails['last_name'].'
+                                        '.$senderDetails['first_name'].' '.$senderDetails['last_name'].'
                                     </td>
                                 </tr>
                                 <tr>

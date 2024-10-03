@@ -1,6 +1,6 @@
 <?php ?>
 
-<div class="row">
+<div class="row mt-3">
     <div class="col-xxl-6"><?= $bannerAdController->getBannerAd() ?></div>
     <div class="col-xxl-6 mt-3 mt-xxl-0"><?= $bannerAdController->getBannerAd() ?></div>
 </div>
