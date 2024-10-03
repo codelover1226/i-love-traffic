@@ -9,6 +9,6 @@
     <div class="col-lg-12 d-flex justify-content-center mt-3"><?= $bannerAd72890Controller->getBannerAd() ?></div>
 </div>
 <div class="row mt-3">
-    <div class="col-lg-12 justify-content-center"><?= $bannerAd600400Controller->getBannerAd() ?></div>
-    <div class="col-lg-12 justify-content-center mt-3"><?= $bannerAd600400Controller->getBannerAd() ?></div>
+    <div class="col-lg-12 d-flex justify-content-center"><?= $bannerAd600400Controller->getBannerAd() ?></div>
+    <div class="col-lg-12 d-flex justify-content-center mt-3"><?= $bannerAd600400Controller->getBannerAd() ?></div>
 </div>
