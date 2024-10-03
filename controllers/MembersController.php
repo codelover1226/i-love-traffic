@@ -635,7 +635,6 @@ class MembersController extends Controller
     }
     public function updateUserProfileImage($username, $userDetails)
     {
-        echo "I am here";
         if (isset($_FILES["image"]) && isset($_POST["csrf_token"])) {
             if ($this->arrayCheck($_POST)) {
                 return ["success" => false, "message" => "Array not allowed."];
@@ -651,7 +650,7 @@ class MembersController extends Controller
             $image_tmp = $_FILES['image']['tmp_name'];
             $image_size = $_FILES['image']['size'];
 
-            $target_file = $target_dir . basename($image);
+            $target_file = $target_dir . $username . '-' . basename($image);
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             $allowed_extensions = array("jpg", "jpeg", "png");
             $max_file_size = 2 * 1024 * 1024;

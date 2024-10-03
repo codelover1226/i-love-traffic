@@ -5,7 +5,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && strcmp(basename($currentPage), basena
     http_response_code(404);
     die("");
 }
-require_once "themes/default/member-area/incs/header.inc.php";
+require_once "incs/header_code.inc.php";
+$username = $_SESSION["logged_username"];
+$userInfo = $membersController->getUserDetails($username);
 if (isset($_POST["first_name"]) && isset($_POST["last_name"])) {
     $flag = $membersController->updateUserAccountInfo($username);
 } else if (isset($_POST["email"])) {
@@ -13,8 +15,8 @@ if (isset($_POST["first_name"]) && isset($_POST["last_name"])) {
 } else if (isset($_FILES["image"])) {
     $flag = $membersController->updateUserProfileImage($username, $userInfo);
 }
-$userInfo = $membersController->getUserDetails($username);
 $membersController->generateUserCSRFToken();
+require_once "themes/default/member-area/incs/header.inc.php";
 ?>
 <div class="page-content">
     <div class="container-fluid">
