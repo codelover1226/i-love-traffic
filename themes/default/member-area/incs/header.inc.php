@@ -101,7 +101,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "offer-page") {
         }
 
         p {
-            font-family: 'Outfit', 'Noto Emoji' !important;
+            /* font-family: 'Outfit', 'Noto Emoji' !important; */
         }
 
         .ck p {
@@ -114,7 +114,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "offer-page") {
 
 
         body {
-            font-family: 'Outfit', 'Noto Emoji';
+            /* font-family: 'Outfit', 'Noto Emoji'; */
         }
 
         .text-ad-title {

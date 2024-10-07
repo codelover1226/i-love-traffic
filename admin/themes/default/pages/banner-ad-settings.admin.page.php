@@ -48,7 +48,7 @@ $adminController->adminCSRFTokenGen();
                         <input type="number" class="form-input" name="banner_credit_conversation" value="<?= $otherSettingsData['settings_value'] ?>" placeholder="Conversation rate">
                         <input type="hidden" name="admin_csrf_token" value="<?= $adminController->getAdminCSRFToken() ?>">
                     </div>
-                    <button type="submit" class="btn btn-primary mt-6">Add</button>
+                    <button type="submit" class="btn btn-primary mt-6">Update</button>
                 </form>
             </div>
         </div>

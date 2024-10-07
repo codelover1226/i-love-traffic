@@ -156,20 +156,20 @@ class MembersController extends Controller
             if ($siteSettigsData["anti_cheat_system"] == 1 && $this->userIPInfo($_SERVER["REMOTE_ADDR"])) {
                 return ["success" => false, "message" => "Someone already created an account from this IP " . $_SERVER["REMOTE_ADDR"] . " . We allow only one account per IP address."];
             }
-            if (!empty($siteSettigsData["google_captcha_public_key"]) && !empty($siteSettigsData["google_captcha_private_key"])) {
-                if (isset($_POST["g-recaptcha-response"])) {
-                    $captcha = $_POST["g-recaptcha-response"];
-                    $secretKey = $siteSettigsData["google_captcha_private_key"];
-                    $url = "https://www.google.com/recaptcha/api/siteverify?secret=" . urlencode($secretKey) . "&response=" . urlencode($captcha);
-                    $response = file_get_contents($url);
-                    $responseKeys = json_decode($response, true);
-                    if (!$responseKeys["success"]) {
-                        return ["success" => false, "message" => "Invalid captcha."];
-                    }
-                } else {
-                    return ["success" => false, "message" => "You forgot the captcha."];
-                }
-            }
+            // if (!empty($siteSettigsData["google_captcha_public_key"]) && !empty($siteSettigsData["google_captcha_private_key"])) {
+            //     if (isset($_POST["g-recaptcha-response"])) {
+            //         $captcha = $_POST["g-recaptcha-response"];
+            //         $secretKey = $siteSettigsData["google_captcha_private_key"];
+            //         $url = "https://www.google.com/recaptcha/api/siteverify?secret=" . urlencode($secretKey) . "&response=" . urlencode($captcha);
+            //         $response = file_get_contents($url);
+            //         $responseKeys = json_decode($response, true);
+            //         if (!$responseKeys["success"]) {
+            //             return ["success" => false, "message" => "Invalid captcha."];
+            //         }
+            //     } else {
+            //         return ["success" => false, "message" => "You forgot the captcha."];
+            //     }
+            // }
             $referrer = "";
             if (isset($_COOKIE["nsms_affiliate"]) && $_COOKIE["nsms_affiliate"] != $_POST["username"]) {
                 $referrer = $_COOKIE["nsms_affiliate"];
@@ -195,30 +195,30 @@ class MembersController extends Controller
             $activationMassege .= "Click the button below to activate your account.<br>";
             $activationMassege .= "If the button doesn't work, copy and paste this link into your browser: " . $activationLink . "<br>";
             $this->model->addNewMember(["username" => $_POST["username"], "first_name" => $_POST["first_name"], "last_name" => $_POST["last_name"], "email" => $_POST["email"], "phone" => "", "country" => $user_country, "telegram" => "", "skype" => "", "password" => password_hash($this->passwordSalt . $_POST["password"], PASSWORD_BCRYPT), "password_reset" => md5(uniqid("nTkS")), "password_reset_request_time" => 0, "account_activation_key" => $accountActivationKey, "account_activation_request_time" => time(), "account_status" => 0, "vacation_end_time" => time(), "membership" => 1, "membership_end_time" => "Lifetime", "credits" => 0, "banner_credits" => 0, "text_ad_credits" => 0, "balance" => 0, "membership_end_notification" => 0, "join_timestamp" => time(), "last_login_timestamp" => 0, "registration_ip" => $_SERVER["REMOTE_ADDR"], "paypal" => "", "btc_coinbase" => "", "skrill" => "", "transfer_wise" => "", "perfect_money" => "", "eth_wallet" => "", "referrer" => $referrer, "referral_link_clicks" => 0, "total_clicks" => 0, "unsubscribe_key" => md5(uniqid("ntkS-")), "email_report_key" => md5(uniqid("ntkS+")), "auto_email_subject" => "", "auto_email_body" => "", "auto_email_website" => "", "auto_email_status" => 2]);
-            SingleEmailSystem::sendEmail("no-reply@" . parse_url($siteSettigsData["installation_url"])["host"], $siteSettigsData["site_title"], $_POST["email"], $_POST["first_name"] . " " . $_POST["last_name"], "Activate your account", SystemEmailTemplate::emailTemplate($siteSettigsData["logo_link"], $siteSettigsData["installation_url"], "Account Activation", $activationMassege, $activationLink, "Activate Account"));
-            if (!empty($referrer)) {
-                $referrerDetails = $this->getUserDetails($referrer);
-                if (!empty($referrerDetails)) {
-                    $referrerEmailSubject = $siteSettigsData["site_title"] . " :: ";
-                    $referrerEmailSubject .= $_POST["first_name"] . " ";
-                    $referrerEmailSubject .= $_POST["last_name"];
-                    $referrerEmailSubject .= " has joined under your downline";
-                    $referrerUpdateMessage = "Dear " . $referrerDetails["first_name"] . " " . $referrerDetails["last_name"] . "<br>";
-                    $referrerUpdateMessage .= "A new member has joined " . $siteSettigsData["site_title"] . " using your affiliate link. <br>";
-                    $referrerUpdateMessage .= "Username :  " . $_POST["username"] . " <br>";
-                    $referrerUpdateMessage .= "First Name :  " . $_POST["first_name"] . " <br>";
-                    $referrerUpdateMessage .= "Last Name :  " . $_POST["last_name"] . " <br>";
-                    if ($referrerDetails["membership"] != 1) {
-                        $referrerUpdateMessage .= "You can use our affiliate messaging system to contact your downline member.";
-                    } else {
-                        $referrerUpdateMessage .= "<br>Unlock the power of our affiliate messaging system to seamlessly connect with your dynamic downline members. ";
-                        $referrerUpdateMessage .= "Elevate your communication game and boost your team's success! ";
-                        $referrerUpdateMessage .= "Upgrade today and take your membership to the next level. ";
-                        $referrerUpdateMessage .= "Don't miss out on this game-changing opportunity, because great connections lead to greater achievements!";
-                    }
-                    SingleEmailSystem::sendEmail("no-reply@" . parse_url($siteSettigsData["installation_url"])["host"], $siteSettigsData["site_title"], $referrerDetails["email"], $referrerDetails["first_name"] . " " . $referrerDetails["last_name"], $referrerEmailSubject, SystemEmailTemplate::emailTemplate($siteSettigsData["logo_link"], $siteSettigsData["installation_url"], "Downline Update", $referrerUpdateMessage, $siteSettigsData["installation_url"] . "/login.php", "Login To Your Account"));
-                }
-            }
+            // SingleEmailSystem::sendEmail("no-reply@" . parse_url($siteSettigsData["installation_url"])["host"], $siteSettigsData["site_title"], $_POST["email"], $_POST["first_name"] . " " . $_POST["last_name"], "Activate your account", SystemEmailTemplate::emailTemplate($siteSettigsData["logo_link"], $siteSettigsData["installation_url"], "Account Activation", $activationMassege, $activationLink, "Activate Account"));
+            // if (!empty($referrer)) {
+            //     $referrerDetails = $this->getUserDetails($referrer);
+            //     if (!empty($referrerDetails)) {
+            //         $referrerEmailSubject = $siteSettigsData["site_title"] . " :: ";
+            //         $referrerEmailSubject .= $_POST["first_name"] . " ";
+            //         $referrerEmailSubject .= $_POST["last_name"];
+            //         $referrerEmailSubject .= " has joined under your downline";
+            //         $referrerUpdateMessage = "Dear " . $referrerDetails["first_name"] . " " . $referrerDetails["last_name"] . "<br>";
+            //         $referrerUpdateMessage .= "A new member has joined " . $siteSettigsData["site_title"] . " using your affiliate link. <br>";
+            //         $referrerUpdateMessage .= "Username :  " . $_POST["username"] . " <br>";
+            //         $referrerUpdateMessage .= "First Name :  " . $_POST["first_name"] . " <br>";
+            //         $referrerUpdateMessage .= "Last Name :  " . $_POST["last_name"] . " <br>";
+            //         if ($referrerDetails["membership"] != 1) {
+            //             $referrerUpdateMessage .= "You can use our affiliate messaging system to contact your downline member.";
+            //         } else {
+            //             $referrerUpdateMessage .= "<br>Unlock the power of our affiliate messaging system to seamlessly connect with your dynamic downline members. ";
+            //             $referrerUpdateMessage .= "Elevate your communication game and boost your team's success! ";
+            //             $referrerUpdateMessage .= "Upgrade today and take your membership to the next level. ";
+            //             $referrerUpdateMessage .= "Don't miss out on this game-changing opportunity, because great connections lead to greater achievements!";
+            //         }
+            //         SingleEmailSystem::sendEmail("no-reply@" . parse_url($siteSettigsData["installation_url"])["host"], $siteSettigsData["site_title"], $referrerDetails["email"], $referrerDetails["first_name"] . " " . $referrerDetails["last_name"], $referrerEmailSubject, SystemEmailTemplate::emailTemplate($siteSettigsData["logo_link"], $siteSettigsData["installation_url"], "Downline Update", $referrerUpdateMessage, $siteSettigsData["installation_url"] . "/login.php", "Login To Your Account"));
+            //     }
+            // }
             return ["success" => true, "message" => "Your account has been created. We have sent you an activation link. Please check your inbox/spam."];
         }
     }

@@ -54,9 +54,9 @@ class OtherSettingsController extends Controller
             foreach ($_POST as $var) {
                 $array_flag = is_array($var);
                 if ($array_flag) {
-                    if ($array_flag) {
-                        return ["success" => false, "message" => "It seems that you have sent an array and we don't allow that."];
-                    }
+                    return ["success" => false, "message" => "It seems that you have sent an array and we don't allow that."];
+                }
+                else {
                     $adminController = new AdminController();
                     if (empty($_POST["text_ad_credit_conversation"]) || empty($_POST["admin_csrf_token"])) {
                         return ["success" => false, "message" => "All fields are required."];

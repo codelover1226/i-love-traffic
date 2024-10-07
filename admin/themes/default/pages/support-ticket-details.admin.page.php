@@ -21,13 +21,12 @@ require_once "themes/default/incs/header.theme.php";
 $supportTicketsController = new SupportTicketsController();
 $supportTicketDetails = $supportTicketsController->getTicketDetails($_GET["details"]);
 if (!empty($supportTicketDetails)) {
-    $flag = $supportTicketsController->createReply($ticketAuthorDetails, $siteSettingsData);
-    $supportTicketReplies = $supportTicketsController->getTicketReplies($_GET["details"]);
     $membersController = new MembersController();
     $ticketAuthorDetails = $membersController->getUserDetails($supportTicketDetails["ticket_author_username"]);
     $siteSettingsController = new SiteSettingsController();
     $siteSettingsData = $siteSettingsController->getSettings();
-    
+    $flag = $supportTicketsController->createReply($ticketAuthorDetails, $siteSettingsData);
+    $supportTicketReplies = $supportTicketsController->getTicketReplies($_GET["details"]);    
 }
 
 

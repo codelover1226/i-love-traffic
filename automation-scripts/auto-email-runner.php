@@ -12,7 +12,7 @@ $membersController = new MembersController();
 $autoEmails = $membersController->getAutoEmails();
 if (!empty($autoEmails)) {
     $emailsController = new EmailsController();
-    $totalMembers = $membersController->totalMemberByStatus(1) - 1;
+    $totalMembers = $membersController->totalMemberByStatus(1);
     if ($totalMembers > 0) {
         foreach ($autoEmails as $autoEmailDetails) {
             $maxRecipent = 0;
