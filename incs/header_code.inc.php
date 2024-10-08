@@ -44,7 +44,6 @@ $splashPagesController = new SplashPagesController();
 $referralContestController = new ReferralContestController();
 $activityContestController = new ActivityContestController();
 $otherSettingsController = new OtherSettingsController();
-$loginAdsController = new LoginSpotlightAdsController();
 $noticeController = new NoticeController();
 $emailClicksController = new EmailClicksController();
 $emailDraftsController = new EmailDraftsController();

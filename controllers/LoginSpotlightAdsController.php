@@ -157,11 +157,11 @@ class LoginSpotlightAdsController extends Controller
                         $avialableDates[$counter] = $i . date("-M-Y");
                         $counter++;
                     }
-                    $i++;
                 } else {
                     $dateFlag = false;
                 }
             }
+            $i++;
         }
         return $avialableDates;
     }
