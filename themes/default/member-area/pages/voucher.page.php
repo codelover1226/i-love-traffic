@@ -48,43 +48,45 @@ $membersController->generateUserCSRFToken();
                         </p>
                     </div><br>
                     <?php if (!empty($voucherDetails)) : ?>
-                        <h3>Voucher Details</h3>
-                        <table class="table align-middle table-nowrap">
-                            <tbody>
-                                <tr>
-                                    <td style="width: 30%">
-                                        <p class="mb-0">Email Credits</p>
-                                    </td>
-                                    <td style="width: 25%">
-                                        <h5 class="mb-0"><?= $voucherDetails["email_credits"] ?></h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="mb-0">Banner Ad Credits</p>
-                                    </td>
-                                    <td>
-                                        <h5 class="mb-0"><?= $voucherDetails["banner_ad_credits"] ?></h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="mb-0">Text Ad Credits</p>
-                                    </td>
-                                    <td>
-                                        <h5 class="mb-0"><?= $voucherDetails["text_ad_credits"] ?></h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="mb-0">Login Ad Credits</p>
-                                    </td>
-                                    <td>
-                                        <h5 class="mb-0"><?= $voucherDetails["login_ads"] ?></h5>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div style="padding:16px">
+                            <h3>Voucher Details</h3>
+                            <table class="table align-middle table-nowrap">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 30%">
+                                            <p class="mb-0">Email Credits</p>
+                                        </td>
+                                        <td style="width: 25%">
+                                            <h5 class="mb-0"><?= $voucherDetails["email_credits"] ?></h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="mb-0">Banner Ad Credits</p>
+                                        </td>
+                                        <td>
+                                            <h5 class="mb-0"><?= $voucherDetails["banner_ad_credits"] ?></h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="mb-0">Text Ad Credits</p>
+                                        </td>
+                                        <td>
+                                            <h5 class="mb-0"><?= $voucherDetails["text_ad_credits"] ?></h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="mb-0">Login Ad Credits</p>
+                                        </td>
+                                        <td>
+                                            <h5 class="mb-0"><?= $voucherDetails["login_ads"] ?></h5>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     <?php endif; ?>
                     <?php require_once "themes/default/member-area/incs/footer-ads.inc.php"; ?>
                 </div>

@@ -26,15 +26,15 @@ $membersController->verifyLoggedIn("login");
   <meta property="og:image" content="<?= $siteSettingsData['banner_image'] ?>" />
   <title><?= isset($title) ? $title . " | " . $siteSettingsData["site_title"] : $siteSettingsData["site_title"] ?></title>
 
-  <link rel="stylesheet" href="themes/default/general-area/assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="themes/default/general-area/assets/css/all.min.css">
-  <link rel="stylesheet" href="themes/default/general-area/assets/css/animate.css">
-  <link rel="stylesheet" href="themes/default/general-area/assets/css/nice-select.css">
-  <link rel="stylesheet" href="themes/default/general-area/assets/css/owl.min.css">
-  <link rel="stylesheet" href="themes/default/general-area/assets/css/jquery-ui.min.css">
-  <link rel="stylesheet" href="themes/default/general-area/assets/css/magnific-popup.css">
-  <link rel="stylesheet" href="themes/default/general-area/assets/css/flaticon.css">
-  <link rel="stylesheet" href="themes/default/general-area/assets/css/main.css">
+  <link rel="stylesheet" href="themes/default/general-area/assets/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="themes/default/general-area/assets/css/all.min.css" >
+  <link rel="stylesheet" href="themes/default/general-area/assets/css/animate.css" >
+  <link rel="stylesheet" href="themes/default/general-area/assets/css/nice-select.css" >
+  <link rel="stylesheet" href="themes/default/general-area/assets/css/owl.min.css" >
+  <link rel="stylesheet" href="themes/default/general-area/assets/css/jquery-ui.min.css" >
+  <link rel="stylesheet" href="themes/default/general-area/assets/css/magnific-popup.css" >
+  <link rel="stylesheet" href="themes/default/general-area/assets/css/flaticon.css" >
+  <link rel="stylesheet" href="themes/default/general-area/assets/css/main.css" >
   <link rel="shortcut icon" href="logo2/favicon.ico" type="image/x-icon">
 </head>
 

@@ -26,7 +26,7 @@
             <li class="nav-item">
                 <a href="received-mails.php" class="nav-link" data-key="t-chat">Received Emails</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" style="display:none">
                 <a href="unread-mails.php" class="nav-link" data-key="t-chat">Unread Emails</a>
             </li>
         </ul>
