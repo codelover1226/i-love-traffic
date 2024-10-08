@@ -151,12 +151,12 @@ class LoginSpotlightAdsController extends Controller
             $dateFlag = false;
             $timeStamp = strtotime($i . date("M-Y") . " 00:00:00");
             foreach ($bookedDates as $date) {
-                if (in_array($timeStamp, $date)) {
-                    $dateFlag = true;
-                    if (!$dateFlag) {
+                if (!$dateFlag) {
+                    if (!in_array($timeStamp, $date)) {
                         $avialableDates[$counter] = $i . date("-M-Y");
                         $counter++;
                     }
+                    $dateFlag = true;
                 } else {
                     $dateFlag = false;
                 }
