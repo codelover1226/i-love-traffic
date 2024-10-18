@@ -1,7 +1,7 @@
 <?php ?>
 <li class="nav-item">
     <a class="nav-link menu-link" href="#sidebarTextAds" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTextAds">
-        <i class="ri-file-text-line"></i> <span data-key="t-emails">Text Ads</span>
+        <i class="ri-file-text-line"></i> <span data-key="t-sidebarTextAds">Text Ads</span>
     </a>
     <div class="collapse menu-dropdown" id="sidebarTextAds">
         <ul class="nav nav-sm flex-column">

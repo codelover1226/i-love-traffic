@@ -36,6 +36,7 @@ $emailCreditsPackageController = new EmailCreditsPackagesController();
 $membershipsController = new MembershipsController();
 $productsController = new ProductsController();
 $loginAdsController = new LoginSpotlightAdsController();
+$loginAdController = new LoginAdsController();
 $ordersController = new OrdersController();
 $rewardsController = new RewardsController();
 $affiliateSettingsController = new AffiliateSettingsController();

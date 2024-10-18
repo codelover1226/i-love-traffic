@@ -89,8 +89,12 @@ $adminController->adminCSRFTokenGen();
                                 <input type="number" step="0.1" class="form-input" name="bonus_banner_credits" placeholder="Bonus Banner Credits" value="<?= $membershipDetails['bonus_banner_credits'] ?>">
                             </div>
                             <div class="form-group">
-                                <label for="noticeContent">Credits Per Click</label>
+                                <label for="noticeContent">Credits Per Email Click</label>
                                 <input type="number" class="form-input" name="credits_per_click" placeholder="Credits per click" value="<?= $membershipDetails['credits_per_click'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="noticeContent">Credits Per Login Ad</label>
+                                <input type="number" class="form-input" name="credits_per_login" placeholder="Credits per login Ad" value="<?= $membershipDetails['credits_per_login'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="noticeContent">Max Receipient</label>
@@ -140,6 +144,10 @@ $adminController->adminCSRFTokenGen();
                             <div class="form-group">
                                 <label for="noticeContent">Credits Per Click</label>
                                 <input type="number" class="form-input" name="credits_per_click" placeholder="Credits per click" value="<?= $membershipDetails['credits_per_click'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="noticeContent">Credits Per Login Ad</label>
+                                <input type="number" class="form-input" name="credits_per_login" placeholder="Credits per login Ad" value="<?= $membershipDetails['credits_per_login'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="noticeContent">Max Receipient</label>

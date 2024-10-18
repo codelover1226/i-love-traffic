@@ -37,7 +37,8 @@ class WebsiteThemeLoaderController extends Controller
                 if (file_exists("themes/" . $websiteSettings["website_theme"] . "/general-area/pages/" . $page . ".page.php")) {
                     require_once "themes/" . $websiteSettings["website_theme"] . "/general-area/pages/" . $page . ".page.php";
                 } else {
-                    echo "Couldn't find the page in theme directory.";
+                    echo "Couldn't find the page in theme directory.\n";
+                    echo $websiteSettings["website_theme"]. " : ". $page." : ".$area."\n";
                 }
             }
         }

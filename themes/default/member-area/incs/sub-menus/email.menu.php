@@ -1,7 +1,7 @@
 <?php ?>
 <li class="nav-item">
     <a class="nav-link menu-link" href="#sidebarEmails" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarEmails">
-        <i class="ri-mail-send-line"></i> <span data-key="t-emails">Emails</span>
+        <i class="ri-mail-send-line"></i> <span data-key="t-sidebarEmails">Emails</span>
     </a>
     <div class="collapse menu-dropdown" id="sidebarEmails">
         <ul class="nav nav-sm flex-column">

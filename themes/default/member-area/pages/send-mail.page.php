@@ -1,6 +1,14 @@
 <?php
-
-error_log("send mail page");
+/*
+ *
+ *
+ *          Author          :   Noman Prodhan
+ *          Email           :   hello@nomantheking.com
+ *          Websites        :   www.nomantheking.com    www.nomanprodhan.com    www.nstechvalley.com
+ *
+ *
+ */
+ error_log("I am send mail page");
 $currentPage = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on" ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 if ($_SERVER["REQUEST_METHOD"] == "GET" && strcmp(basename($currentPage), basename(__FILE__)) == 0) {
     http_response_code(404);
@@ -41,7 +49,7 @@ if (
         <div class="row">
             <?php require_once "themes/default/member-area/incs/sidebar-ads.inc.php"; ?>
             <div class="col-xl-9">
-                <div class="alert alert-info">You can send <?= $userInfo["email_sending_limit"] ?> email(s) daily. Today you sent total <?= $emailsController->totalUserEmailsToday($username) ?> email(s)</div>
+                <div class="alert alert-info">You can send <?= $userInfo["email_sending_limit"] ?> email(s) daily. </div>
                 <?php if (isset($flag) && isset($flag["success"])) : ?>
                     <?php if ($flag["success"] == true) : ?>
                         <div class="alert alert-success"><?= $flag["message"] ?></div>
@@ -83,7 +91,9 @@ if (
                             <input type="url" name="website_link" class="form-control" placeholder="Target link" value="<?= $website_link ?>">
                         </div><br>
                         <div class="form-group">
-                            <label>Credits (Max : <?= $maxRecipient - 1 ?>)</label>
+                        <p class="fw-medium text-muted mb-0" style="font-size: 12px;">Available Email Credits:
+                                            <?= $userInfo["credits"] ?></p>
+                            <label>Mail to Active Members (Max : <?= $maxRecipient - 1 ?>)</label>
                             <input type="number" name="credits_assign" class="form-control" placeholder="Credits">
                         </div><br>
                         <div class="alert alert-info">Macros<br>Member's First Name {FIRSTNAME}<br>Member's Last Name {LASTNAME}</div>
@@ -96,7 +106,11 @@ if (
                     </div>
                 </div>
 
-                <?php require_once "themes/default/member-area/incs/footer-ads.inc.php"; ?>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6"><?= $bannerAdController->getBannerAd() ?></div>
+                <div class="col-lg-6"><?= $bannerAdController->getBannerAd() ?></div>
             </div>
         </div>
 

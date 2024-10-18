@@ -1,7 +1,7 @@
 <?php ?>
 <li class="nav-item">
     <a class="nav-link menu-link" href="#sidebar160" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar160">
-        <i class="ri-image-line"></i> <span data-key="t-emails">160x600 Banners</span>
+        <i class="ri-image-line"></i> <span data-key="t-160x600-banners">160x600 Banners</span>
     </a>
     <div class="collapse menu-dropdown" id="sidebar160">
         <ul class="nav nav-sm flex-column">

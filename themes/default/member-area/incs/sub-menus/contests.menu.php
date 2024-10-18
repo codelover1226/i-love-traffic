@@ -1,7 +1,7 @@
 <?php ?>
 <li class="nav-item">
     <a class="nav-link menu-link" href="#sidebarContest" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarContest">
-        <i class="ri-bar-chart-2-line"></i> <span data-key="t-emails">Contests</span>
+        <i class="ri-bar-chart-2-line"></i> <span data-key="t-sidebarContest">Contests</span>
     </a>
     <div class="collapse menu-dropdown" id="sidebarContest">
         <ul class="nav nav-sm flex-column">

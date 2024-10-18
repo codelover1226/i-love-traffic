@@ -1,7 +1,7 @@
 <?php ?>
 <li class="nav-item">
     <a class="nav-link menu-link" href="#sidebarAffiliateMessaging" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAffiliateMessaging">
-        <i class="ri-mail-add-line"></i> <span data-key="t-emails">Affiliate Messaging</span>
+        <i class="ri-mail-add-line"></i> <span data-key="t-sidebarAffiliateMessaging">Affiliate Messaging</span>
     </a>
     <div class="collapse menu-dropdown" id="sidebarAffiliateMessaging">
         <ul class="nav nav-sm flex-column">

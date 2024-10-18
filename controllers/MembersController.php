@@ -476,6 +476,14 @@ class MembersController extends Controller
         }
         $this->model->deductMemberBannerAdCredits($username, $amount);
     }
+    public function deductMemberLoginAdCredits($username, $amount)
+    {
+        $userDetails = $this->getUserDetails($username);
+        if ($userDetails["login_ad_credits"] < $amount) {
+            $amount = $userDetails["login_ad_credits"];
+        }
+        $this->model->deductMemberLoginAdCredits($username, $amount);
+    }
     public function increaseMemberTextAdCredits($username, $amount)
     {
         return $this->model->increaseMemberTextAdCredits($username, $amount);
@@ -483,6 +491,10 @@ class MembersController extends Controller
     public function increaseMemberBannerAdCredits($username, $amount)
     {
         return $this->model->increaseMemberBannerCredits($username, $amount);
+    }
+    public function increaseMemberLoginAdCredits($username, $amount)
+    {
+        return $this->model->increaseMemberLoginCredits($username, $amount);
     }
     public function changeUserEmailSubscription($username)
     {
@@ -876,6 +888,30 @@ class MembersController extends Controller
             return ["success" => true, "message" => intval($_POST["credit_amount"]) . " email credit(s) has been converted to " . $totalCredits . " text ad credits."];
         }
     }
+    public function convertCreditToLoginAdCredits($username, $userDetails, $conversationRate)
+    {
+        if (isset($_POST["login_ad_credit"]) && isset($_POST["credit_amount"]) && isset($_POST["csrf_token"])) {
+            if ($this->arrayCheck($_POST)) {
+                return ["success" => false, "message" => "Array not allowed here."];
+            }
+            if (empty($_POST["credit_amount"]) || empty($_POST["csrf_token"])) {
+                return ["success" => false, "message" => "Please enter credit amount."];
+            }
+            if ($_POST["csrf_token"] != $this->getUserCSRFToken()) {
+                return ["success" => false, "message" => "Invalid request."];
+            }
+            if (!is_numeric($_POST["credit_amount"]) || $_POST["credit_amount"] < 1) {
+                return ["success" => false, "message" => "Invalid credit amount."];
+            }
+            if ($userDetails["credits"] < intval($_POST["credit_amount"]) * $conversationRate) {
+                return ["success" => false, "message" => "You don't have " . $_POST["credit_amount"] * $conversationRate . " credits. Currently you have " . $userDetails["credits"]];
+            }
+            $totalCredits = intval($_POST["credit_amount"]);
+            $this->increaseMemberLoginAdCredits($username, $_POST["credit_amount"]);
+            $this->deductMemberCredits($username, intval($_POST["credit_amount"]) * $conversationRate);
+            return ["success" => true, "message" => intval($_POST["credit_amount"]) * $conversationRate . " email credit(s) has been converted to " . $totalCredits . " login ad credits."];
+        }
+    }
     public function convertCreditToBannerCredits($username, $userDetails, $conversationRate)
     {
         if (isset($_POST["banner_ad_credit"]) && isset($_POST["credit_amount"]) && isset($_POST["csrf_token"])) {
@@ -1079,11 +1115,12 @@ class MembersController extends Controller
             if ($userDetails["account_status"] == 2) {
                 return ["success" => false, "message" => "Your account has been banned."];
             }
-            $loginAdController = new LoginSpotlightAdsController();
+            $loginAdsController = new LoginAdsController();
+            // $loginAdController = new LoginSpotlightAdsController();
             $loginAdClickController = new LoginSpotlightAdClickController();
             $loginTokenController = new MembersTokenController();
             $specialOfferPageController = new SpecialOfferPagesController();
-            $todayLoginAd = $loginAdController->getTodayAd();
+            $todayLoginAd = $loginAdsController->getLoginAd();
             $todayLoginClickeAdCount = $loginAdClickController->getTodayAdCount($_POST["username"], $todayLoginAd["id"]);
             $loginOfferPage = $specialOfferPageController->getLoginOfferPage();
             $loginToken = md5(uniqid("ntkS++"));
@@ -1092,8 +1129,9 @@ class MembersController extends Controller
             $_SESSION["user_login_csrf"] = md5(uniqid("sadness"));
             $loginTokenController->addToken(["username" => $_POST["username"], "token" => $loginToken, "timestamp" => time()]);
             $this->model->updateMemberAccount(["last_login_timestamp" => time()], $_POST["username"]);
-            if (!empty($todayLoginAd) && $todayLoginClickeAdCount == 0) {
-                header("Location: email-credits.php?type=loginads&id=" . $todayLoginAd["credit_key"]);
+            if (!empty($todayLoginAd)) {
+            // if (!empty($todayLoginAd) && $todayLoginClickeAdCount == 0) {
+                header("Location: email-credits.php?type=loginads&id=" . $todayLoginAd["id"]);
             } else {
                 if (!empty($loginOfferPage)) {
                     header("Location: special-offer.php?id=" . $loginOfferPage["id"]);

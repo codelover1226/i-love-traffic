@@ -97,12 +97,12 @@ class MembershipsController extends Controller
     }
     public function updateMembership($id)
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["membership_title"]) && isset($_POST["sales_commission"]) && isset($_POST["clicks_commission"]) && isset($_POST["timer_seconds"]) && isset($_POST["price"]) && isset($_POST["admin_csrf_token"]) && isset($_POST["subscription_type"]) && isset($_POST["bonus_email_credits"]) && isset($_POST["bonus_text_ad_credits"]) && isset($_POST["credits_per_click"]) && isset($_POST["bonus_banner_credits"]) && isset($_POST["max_recipient"]) && isset($_POST["hidden"]) && isset($_POST["chat_gpt_access"]) && isset($_POST["chat_gpt_prompt_limit"]) && isset($_POST["stripe_price_id"]) && isset($_POST["status"])) {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["membership_title"]) && isset($_POST["sales_commission"]) && isset($_POST["clicks_commission"]) && isset($_POST["timer_seconds"]) && isset($_POST["price"]) && isset($_POST["admin_csrf_token"]) && isset($_POST["subscription_type"]) && isset($_POST["bonus_email_credits"]) && isset($_POST["bonus_text_ad_credits"]) && isset($_POST["credits_per_click"]) && isset($_POST["credits_per_login"]) && isset($_POST["bonus_banner_credits"]) && isset($_POST["max_recipient"]) && isset($_POST["hidden"]) && isset($_POST["chat_gpt_access"]) && isset($_POST["chat_gpt_prompt_limit"]) && isset($_POST["stripe_price_id"]) && isset($_POST["status"])) {
             if ($this->arrayCheck($_POST)) {
                 return ["success" => false, "message" => "You have sent an array. We don't allow array here."];
             }
             $adminController = new AdminController();
-            if (empty($_POST["membership_title"]) || empty($_POST["timer_seconds"]) || empty($_POST["subscription_type"]) || empty($_POST["admin_csrf_token"]) || empty($_POST["credits_per_click"]) || empty($_POST["max_recipient"]) || empty($_POST["hidden"]) || empty($_POST["chat_gpt_access"]) || empty($_POST["status"])) {
+            if (empty($_POST["membership_title"]) || empty($_POST["timer_seconds"]) || empty($_POST["subscription_type"]) || empty($_POST["admin_csrf_token"]) || empty($_POST["credits_per_click"]) || empty($_POST["credits_per_login"]) || empty($_POST["max_recipient"]) || empty($_POST["hidden"]) || empty($_POST["chat_gpt_access"]) || empty($_POST["status"])) {
                 return ["success" => false, "message" => "All fields are required."];
             }
             if ($_POST["admin_csrf_token"] != $adminController->getAdminCSRFToken()) {
@@ -138,6 +138,9 @@ class MembershipsController extends Controller
             if (!is_numeric($_POST["credits_per_click"]) || $_POST["credits_per_click"] < 0) {
                 return ["success" => false, "message" => "Invalid credits per click."];
             }
+            if (!is_numeric($_POST["credits_per_login"]) || $_POST["credits_per_login"] < 0) {
+                return ["success" => false, "message" => "Invalid credits per login."];
+            }
             if (!is_numeric($_POST["hidden"]) || $_POST["hidden"] < 0 || 2 < $_POST["hidden"]) {
                 return ["success" => false, "message" => "Invalid hidden status."];
             }
@@ -165,18 +168,18 @@ class MembershipsController extends Controller
             if ($_POST["chat_gpt_access"] == 1 && $_POST["subscription_type"] == 1) {
                 return ["success" => false, "message" => "You can't enable ChatGPT for free membership. It's not a good marketing practice."];
             }
-            $this->model->updateMembership(["membership_title" => $_POST["membership_title"], "subscription_type" => $_POST["subscription_type"], "sales_commission" => $_POST["sales_commission"], "clicks_commission" => $_POST["clicks_commission"], "timer_seconds" => $_POST["timer_seconds"], "email_sending_limit" => $_POST["email_sending_limit"], "price" => $_POST["price"], "bonus_email_credits" => $_POST["bonus_email_credits"], "bonus_text_ad_credits" => $_POST["bonus_text_ad_credits"], "bonus_banner_credits" => $_POST["bonus_banner_credits"], "credits_per_click" => $_POST["credits_per_click"], "max_recipient" => $_POST["max_recipient"], "status" => $_POST["status"], "hidden" => $_POST["hidden"], "chat_gpt_access" => $_POST["chat_gpt_access"], "chat_gpt_prompt_limit" => $_POST["chat_gpt_prompt_limit"], "stripe_price_id" => $_POST["stripe_price_id"]], $id);
+            $this->model->updateMembership(["membership_title" => $_POST["membership_title"], "subscription_type" => $_POST["subscription_type"], "sales_commission" => $_POST["sales_commission"], "clicks_commission" => $_POST["clicks_commission"], "timer_seconds" => $_POST["timer_seconds"], "email_sending_limit" => $_POST["email_sending_limit"], "price" => $_POST["price"], "bonus_email_credits" => $_POST["bonus_email_credits"], "bonus_text_ad_credits" => $_POST["bonus_text_ad_credits"], "bonus_banner_credits" => $_POST["bonus_banner_credits"], "credits_per_click" => $_POST["credits_per_click"], "credits_per_login" => $_POST["credits_per_login"], "max_recipient" => $_POST["max_recipient"], "status" => $_POST["status"], "hidden" => $_POST["hidden"], "chat_gpt_access" => $_POST["chat_gpt_access"], "chat_gpt_prompt_limit" => $_POST["chat_gpt_prompt_limit"], "stripe_price_id" => $_POST["stripe_price_id"]], $id);
             return ["success" => true, "message" => "Membership has been updated."];
         }
     }
     public function updateDefaultMembership($id)
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["membership_title"]) && isset($_POST["sales_commission"]) && isset($_POST["clicks_commission"]) && isset($_POST["timer_seconds"]) && isset($_POST["email_sending_limit"]) && isset($_POST["bonus_email_credits"]) && isset($_POST["bonus_text_ad_credits"]) && isset($_POST["bonus_banner_credits"]) && isset($_POST["credits_per_click"]) && isset($_POST["max_recipient"]) && isset($_POST["admin_csrf_token"])) {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["membership_title"]) && isset($_POST["sales_commission"]) && isset($_POST["clicks_commission"]) && isset($_POST["timer_seconds"]) && isset($_POST["email_sending_limit"]) && isset($_POST["bonus_email_credits"]) && isset($_POST["bonus_text_ad_credits"]) && isset($_POST["bonus_banner_credits"]) && isset($_POST["credits_per_click"]) && isset($_POST["credits_per_login"]) && isset($_POST["max_recipient"]) && isset($_POST["admin_csrf_token"])) {
             if ($this->arrayCheck($_POST)) {
                 return ["success" => false, "message" => "You have sent an array. We don't allow array here."];
             }
             $adminController = new AdminController();
-            if (empty($_POST["membership_title"]) || empty($_POST["timer_seconds"]) || empty($_POST["credits_per_click"]) || empty($_POST["max_recipient"]) || empty($_POST["admin_csrf_token"])) {
+            if (empty($_POST["membership_title"]) || empty($_POST["timer_seconds"]) || empty($_POST["credits_per_click"]) || empty($_POST["credits_per_login"]) || empty($_POST["max_recipient"]) || empty($_POST["admin_csrf_token"])) {
                 return ["success" => false, "message" => "All fields are required."];
             }
             if ($_POST["admin_csrf_token"] != $adminController->getAdminCSRFToken()) {
@@ -206,13 +209,16 @@ class MembershipsController extends Controller
             if (!is_numeric($_POST["credits_per_click"]) || $_POST["credits_per_click"] < 0) {
                 return ["success" => false, "message" => "Invalid credits per click."];
             }
+            if (!is_numeric($_POST["credits_per_login"]) || $_POST["credits_per_login"] < 0) {
+                return ["success" => false, "message" => "Invalid credits per login."];
+            }
             if (!is_numeric($_POST["bonus_banner_credits"]) || $_POST["bonus_banner_credits"] < 0) {
                 return ["success" => false, "message" => "Invalid bonus banner ad credits."];
             }
             if (255 < strlen($_POST["membership_title"])) {
                 return ["success" => false, "message" => "Membership titile is too long."];
             }
-            $this->model->updateMembership(["membership_title" => $_POST["membership_title"], "sales_commission" => $_POST["sales_commission"], "clicks_commission" => $_POST["clicks_commission"], "email_sending_limit" => $_POST["email_sending_limit"], "bonus_email_credits" => $_POST["bonus_email_credits"], "bonus_text_ad_credits" => $_POST["bonus_text_ad_credits"], "bonus_banner_credits" => $_POST["bonus_banner_credits"], "credits_per_click" => $_POST["credits_per_click"], "max_recipient" => $_POST["max_recipient"], "timer_seconds" => $_POST["timer_seconds"]], $id);
+            $this->model->updateMembership(["membership_title" => $_POST["membership_title"], "sales_commission" => $_POST["sales_commission"], "clicks_commission" => $_POST["clicks_commission"], "email_sending_limit" => $_POST["email_sending_limit"], "bonus_email_credits" => $_POST["bonus_email_credits"], "bonus_text_ad_credits" => $_POST["bonus_text_ad_credits"], "bonus_banner_credits" => $_POST["bonus_banner_credits"], "credits_per_click" => $_POST["credits_per_click"], "credits_per_login" => $_POST["credits_per_login"], "max_recipient" => $_POST["max_recipient"], "timer_seconds" => $_POST["timer_seconds"]], $id);
             return ["success" => true, "message" => "Default Membership has been updated."];
         }
     }

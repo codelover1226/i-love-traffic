@@ -48,8 +48,8 @@ if (!empty($userInfo["membership_end_time"])) {
 
 function formatNumberDigits($number) {
     if ($number > 10000) {
-        $divide = $number / 1000;
-        return number_format($divide, 2, ".", ",") . "K";
+        $divide = $number;
+        return number_format($divide, 0, ".", ",");
     } else {
         return $number;
     }
@@ -328,7 +328,7 @@ function formatNumberDigits($number) {
                                                 <div>
                                                     <div class="avatar-sm flex-shrink-0">
                                                         <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                            <i data-feather="shopping-cart" class="text-info"></i>
+                                                            <i data-feather="file-text" class="text-info"></i>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -336,7 +336,7 @@ function formatNumberDigits($number) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="display: none;">
                                     <div class="card card-animate">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between">
@@ -358,6 +358,29 @@ function formatNumberDigits($number) {
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="card card-animate">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <p class="fw-medium text-muted mb-0" style="font-size: 20px;">Login
+                                                        Ad Credits</p>
+                                                    <h2 class="mt-4 ff-secondary fw-semibold">
+                                                        <span><?= $userInfo["login_ad_credits"] ?></span>
+                                                    </h2>
+                                                </div>
+                                                <div>
+                                                    <div class="avatar-sm flex-shrink-0">
+                                                        <span class="avatar-title bg-info-subtle rounded-circle fs-2">
+                                                            <i data-feather="log-in" class="text-info"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="card card-animate">
                                         <div class="card-body">
@@ -370,7 +393,7 @@ function formatNumberDigits($number) {
                                                 <div>
                                                     <div class="avatar-sm flex-shrink-0">
                                                         <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                            <i data-feather="file-text" class="image"></i>
+                                                            <i data-feather="thumbs-up" class="text-info"></i>
                                                         </span>
                                                     </div>
                                                 </div>

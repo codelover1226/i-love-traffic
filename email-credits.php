@@ -50,8 +50,9 @@ if (isset($_GET["type"]) && isset($_GET["id"])) {
     } else if ($_GET["type"] == "loginads") {
         $membersController->verifyLoggedIn("logged_in");
         $username = $_SESSION["logged_username"];
-        $loginAdsController = new LoginSpotlightAdsController();
-        $loginAdDetails = $loginAdsController->getLoginAdDetailsByCreditKey($_GET["id"]);
+        $loginAdsController = new LoginAdsController();
+        // $loginAdsController = new LoginSpotlightAdsController();
+        $loginAdDetails = $loginAdsController->getLoginAdDetails($_GET["id"]);
         if (empty($loginAdDetails)) {
             $error = "Invalid login spotlight ad.";
         } else {
@@ -61,10 +62,11 @@ if (isset($_GET["type"]) && isset($_GET["id"])) {
             $loginAdClickController = new LoginSpotlightAdClickController();
             if ($loginAdClickController->getTodayAdCount($username, $loginAdDetails["id"]) > 0) {
                 $error = "You have already visited this site.";
-                $websiteLink = $loginAdDetails["website_link"];
+                $websiteLink = $loginAdDetails["ad_link"];
             } else {
-                $credits = $loginAdDetails["user_credits"];
-                $websiteLink = $loginAdDetails["website_link"];
+                // $credits = $loginAdDetails["user_credits"];
+                $websiteLink = $loginAdDetails["ad_link"];
+                $credits = $userDetails["credits_per_login"];
             }
         }
     } else {
@@ -204,7 +206,8 @@ if (isset($_GET["type"]) && isset($_GET["id"])) {
         margin-left: 0px;
     }
 
-    .progress-container {
+    
+    #progress-container {
         height: 10px;
         width: 400px;
         margin-top: 25px;
@@ -213,7 +216,7 @@ if (isset($_GET["type"]) && isset($_GET["id"])) {
         position: relative;
     }
 
-    .progress-container .progress-bar {
+    #progress-container.progress-bar {
         position: absolute;
         height: 100%;
         border-radius: 5px;

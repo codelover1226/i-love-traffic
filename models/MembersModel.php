@@ -84,7 +84,7 @@ class MembersModel extends Model
     {
         $membershipController = new MembershipsController();
         $membershipTable = $membershipController->getTable();
-        $query = "SELECT " . $this->table . ".*, " . $membershipTable . ".membership_title, " . $membershipTable . ".sales_commission, \n        " . $membershipTable . ".clicks_commission, " . $membershipTable . ".timer_seconds, " . $membershipTable . ".email_sending_limit, " . $membershipTable . ".credits_per_click, \n        " . $membershipTable . ".max_recipient, " . $membershipTable . ".chat_gpt_access, " . $membershipTable . ".chat_gpt_prompt_limit \n         FROM " . $this->table . ", \n        " . $membershipTable . " WHERE " . $membershipTable . ".id = " . $this->table . ".membership AND " . $this->table . ".username = ?";
+        $query = "SELECT " . $this->table . ".*, " . $membershipTable . ".membership_title, " . $membershipTable . ".sales_commission, \n        " . $membershipTable . ".clicks_commission, " . $membershipTable . ".timer_seconds, " . $membershipTable . ".email_sending_limit, " . $membershipTable . ".credits_per_click, ". $membershipTable . ".credits_per_login, " . $membershipTable . ".max_recipient, " . $membershipTable . ".chat_gpt_access, " . $membershipTable . ".chat_gpt_prompt_limit \n         FROM " . $this->table . ", \n        " . $membershipTable . " WHERE " . $membershipTable . ".id = " . $this->table . ".membership AND " . $this->table . ".username = ?";
         $handler = $this->getDBConnection()->prepare($query);
         $handler->bindValue(1, $this->filter($username));
         $handler->execute();
@@ -183,6 +183,13 @@ class MembersModel extends Model
         $handler->bindValue(1, $this->filter($username));
         return $handler->execute();
     }
+    public function deductMemberLoginAdCredits($username, $amount)
+    {
+        $query = "UPDATE " . $this->table . " SET login_ad_credits = login_ad_credits - " . $amount . " WHERE username = ?";
+        $handler = $this->getDBConnection()->prepare($query);
+        $handler->bindValue(1, $this->filter($username));
+        return $handler->execute();
+    }
     public function deductMbmberBalance($username, $amount)
     {
         $query = "UPDATE " . $this->table . " SET balance = balance - " . $amount . " WHERE username = ?";
@@ -207,6 +214,13 @@ class MembersModel extends Model
     public function increaseMemberBannerCredits($username, $amount)
     {
         $query = "UPDATE " . $this->table . " SET banner_credits = banner_credits + " . $amount . " WHERE username = ?";
+        $handler = $this->getDBConnection()->prepare($query);
+        $handler->bindValue(1, $this->filter($username));
+        return $handler->execute();
+    }
+    public function increaseMemberLoginCredits($username, $amount)
+    {
+        $query = "UPDATE " . $this->table . " SET login_ad_credits = login_ad_credits + " . $amount . " WHERE username = ?";
         $handler = $this->getDBConnection()->prepare($query);
         $handler->bindValue(1, $this->filter($username));
         return $handler->execute();

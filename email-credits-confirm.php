@@ -63,8 +63,9 @@ if (isset($_SESSION["is_clicking"])) {
             } else if ($_GET["type"] == "loginads") {
                 $membersController->verifyLoggedIn("logged_in");
                 $username = $_SESSION["logged_username"];
-                $loginAdsController = new LoginSpotlightAdsController();
-                $loginAdDetails = $loginAdsController->getLoginAdDetailsByCreditKey($_GET["id"]);
+                $loginAdsController = new LoginAdsController();
+                // $loginAdsController = new LoginSpotlightAdsController();
+                $loginAdDetails = $loginAdsController->getLoginAdDetails($_GET["id"]);
                 if (empty($loginAdDetails)) {
                     $error = "Invalid login spotlight ad.";
                 } else {
@@ -73,6 +74,7 @@ if (isset($_SESSION["is_clicking"])) {
                     $loginAdClickController = new LoginSpotlightAdClickController();
                     if ($loginAdClickController->getTodayAdCount($username, $loginAdDetails["id"]) > 0) {
                         echo "You have already visited this site.";
+                        $loginAdsController->increaseLoginAdClicks($loginAdDetails["id"]);
                     } else {
                         $credits = $loginAdDetails["user_credits"];
                         if ((time() - $_GET["timer_start"]) >= $timer) {
@@ -81,12 +83,11 @@ if (isset($_SESSION["is_clicking"])) {
                                 array(
                                     "username" => $userDetails["username"],
                                     "ad_id" => $loginAdDetails["id"],
-                                    "credit_key" => $loginAdDetails["credit_key"],
                                     "timestamp" => time(),
                                 )
                             );
                             $membersController->addEmailCredits($userDetails["username"], $credits);
-                            $loginAdsController->increaseLoginAdView($loginAdDetails["id"]);
+                            $loginAdsController->increaseLoginAdClicks($loginAdDetails["id"]);
                             $affiliateDetails = $membersController->getUserDetails($userDetails["referrer"]);
                             if (!empty($affiliateDetails)) {
                                 $membersController->addEmailCredits($affiliateDetails["username"], $affiliateDetails["clicks_commission"]);

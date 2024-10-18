@@ -39,6 +39,7 @@ class Controller
     public function is_url_image($url)
     {
         try {
+            return true;
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0");
@@ -75,6 +76,12 @@ class Controller
             return substr($str, 0, 50) . "........." . substr($str, -50);
         }
         return $str;
+    }
+    public function isBannedEmail($email){
+        return true;
+    }
+    public function isBannedDomain($domain){
+        return true;
     }
 }
 

@@ -16,13 +16,16 @@
     </button>
     <ul x-cloak x-show="activeDropdown === 'login-spotlights'" x-collapse class="sub-menu text-gray-500">
         <li>
-            <a href="login-ads.php">Ads List</a>
+            <a href="web-login-ads.php">Ads List</a>
         </li>
         <li>
-            <a href="add-login-ad.php">Add to User</a>
+            <a href="add-login-ad.php" style="display: none;">Add to User</a>
         </li>
         <li>
-            <a href="login-ad-settings.php">Settings</a>
+            <a href="login-ad-settings1.php">Conversion Rate</a>
+        </li>
+        <li>
+            <a href="login-ad-settings.php" style="display: none;">Settings</a>
         </li>
     </ul>
 </li>
