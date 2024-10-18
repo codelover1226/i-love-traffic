@@ -73,7 +73,7 @@ if (isset($_SESSION["is_clicking"])) {
                     $timer = $userDetails["timer_seconds"];
                     $loginAdClickController = new LoginSpotlightAdClickController();
                     if ($loginAdClickController->getTodayAdCount($username, $loginAdDetails["id"]) > 0) {
-                        echo "You have already visited this site.";
+                        echo "Log in Reward already claimed.";
                         $loginAdsController->increaseLoginAdClicks($loginAdDetails["id"]);
                     } else {
                         $credits = $loginAdDetails["user_credits"];

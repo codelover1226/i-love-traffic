@@ -46,7 +46,7 @@ $membershipsList = $membershipsController->getActiveMembershipsList();
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 d-none">
                         <div class="card border border-primary">
                             <div class="card-header bg-transparent border-primary">
                                 <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow me-3"></i>Login Spotlight Ad</h5>

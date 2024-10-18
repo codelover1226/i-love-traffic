@@ -61,7 +61,7 @@ if (isset($_GET["type"]) && isset($_GET["id"])) {
             $adTitle = "Login Ad";
             $loginAdClickController = new LoginSpotlightAdClickController();
             if ($loginAdClickController->getTodayAdCount($username, $loginAdDetails["id"]) > 0) {
-                $error = "You have already visited this site.";
+                $error = "Log in Reward already claimed.";
                 $websiteLink = $loginAdDetails["ad_link"];
             } else {
                 // $credits = $loginAdDetails["user_credits"];
