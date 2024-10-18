@@ -1,4 +1,4 @@
 /configs
 /uploads
 /images
-/admin/config
+/admin/config/db.config.inc.php
