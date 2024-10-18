@@ -43,7 +43,7 @@ $adminController->adminCSRFTokenGen();
         </li>
     </ul>
 
-    <div class="grid grid-cols-1 gap-6 pt-5 lg:grid-cols-2">
+    <div class="grid grid-cols-1 gap-6 pt-5 lg:grid-cols-1">
         <div class="panel">
 
             <div class="relative inline-flex align-middle">
@@ -90,24 +90,45 @@ $adminController->adminCSRFTokenGen();
                             </table>
                             <br>
                             <?php $linkCountryList = $linkTrackerController->shortenLinkClicksCountry($_GET["details"], $_GET["user"]); ?>
-                            <h4>Visitors Country List</h4>
+                            <?php $linkOriginList = $linkTrackerController->shortenLinkClicksOrigin($_GET["details"], $_GET["user"]); ?>
                             <?php if (!empty($linkCountryList)) : ?>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <tbody>
-                                            <thead>
-                                                <td>Country</td>
-                                                <td>Total Clicks</td>
-                                            </thead>
-                                            <?php foreach ($linkCountryList as $countryDetails) : ?>
-                                                <tr>
-                                                <tr>
-                                                    <td><?= $countryDetails["visitor_country"] ?></td>
-                                                    <td><?= $countryDetails["total_clicks"] ?></td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
+                                <div class="grid grid-cols-1 gap-6 pt-5 lg:grid-cols-2">
+                                    <div class="table-responsive">
+                                        <h4>Visitors Country List</h4>
+                                        <table class="table">
+                                            <tbody>
+                                                <thead>
+                                                    <td>Country</td>
+                                                    <td>Total Clicks</td>
+                                                </thead>
+                                                <?php foreach ($linkCountryList as $countryDetails) : ?>
+                                                    <tr>
+                                                    <tr>
+                                                        <td><?= !empty($countryDetails["visitor_country"]) ? $countryDetails["visitor_country"] : "Unknown" ?></td>
+                                                        <td><?= $countryDetails["total_clicks"] ?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <h4>Visitors Origin List</h4>
+                                        <table class="table">
+                                            <tbody>
+                                                <thead>
+                                                    <td>Origin</td>
+                                                    <td>Total Clicks</td>
+                                                </thead>
+                                                <?php foreach ($linkOriginList as $originDetails) : ?>
+                                                    <tr>
+                                                    <tr>
+                                                        <td><?= !empty($originDetails["visitor_origin"]) ? $originDetails["visitor_origin"] : "Unknown" ?></td>
+                                                        <td><?= $originDetails["total_clicks"] ?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             <?php endif; ?>
                         <?php endif; ?>

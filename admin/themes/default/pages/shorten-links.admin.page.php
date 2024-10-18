@@ -68,7 +68,7 @@ $adminController->adminCSRFTokenGen();
                                     <th>Tracking Code</th>
                                     <th>Created At</th>
                                     <th>Total Visits</th>
-                                    <th>status</th>
+                                    <th>Status</th>
                                     <th></th>
                                     <th></th>
                                 </tr>

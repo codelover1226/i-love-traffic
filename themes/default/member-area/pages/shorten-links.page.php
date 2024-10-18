@@ -32,7 +32,7 @@ $membersController->generateUserCSRFToken();
                                 <td>Actual Link</td>
                                 <td>Created At</td>
                                 <td>Total Visits</td>
-                                <td>status</td>
+                                <td>Status</td>
                                 <td></td>
                                 <td></td>
                             </thead>
