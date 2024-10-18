@@ -23,6 +23,61 @@ class LinkTracker extends Model
 	private $shortenLinkClicksTable = 'ntk_shorten_link_clicks';
 	private $shortenLinkSettingsTable = 'ntk_shorten_link_settings';
 
+    public function approveLink()
+    {
+        if (isset($_GET["approved"]) && isset($_GET["token"]) && !empty($_GET["approved"]) && !empty($_GET["token"])) {
+            $adminController = new AdminController();
+            if ($adminController->getAdminCSRFToken() != $_GET["token"]) {
+                return ["success" => false, "message" => "Invalid request."];
+            }
+            if (!is_numeric($_GET["approved"]) || $_GET["approved"] < 1) {
+                return ["success" => false, "message" => "Invalid banner ad."];
+            }
+			$query = 'UPDATE ' . $this->shortenLinkTable . ' SET status = 2 WHERE id = ? LIMIT 1';
+			$handler = $this->getDBConnection()->prepare($query);
+			$handler->bindValue(1, $this->filter($_GET["approved"]));
+			$handler->execute();
+            return ["success" => true, "message" => "Banner ad has been approved."];
+        }
+    }
+    public function pendLink()
+    {
+        if (isset($_GET["pending"]) && isset($_GET["token"]) && !empty($_GET["pending"]) && !empty($_GET["token"])) {
+            $adminController = new AdminController();
+            if ($adminController->getAdminCSRFToken() != $_GET["token"]) {
+                return ["success" => false, "message" => "Invalid request."];
+            }
+            if (!is_numeric($_GET["pending"]) || $_GET["pending"] < 1) {
+                return ["success" => false, "message" => "Invalid banner ad."];
+            }
+			$query = 'UPDATE ' . $this->shortenLinkTable . ' SET status = 1 WHERE id = ? LIMIT 1';
+			$handler = $this->getDBConnection()->prepare($query);
+			$handler->bindValue(1, $this->filter($_GET["pending"]));
+			$handler->execute();
+            return ["success" => true, "message" => "Banner ad has been pended."];
+        }
+    }
+    public function banLink()
+    {
+        if (isset($_GET["ban"]) && isset($_GET["token"]) && !empty($_GET["ban"]) && !empty($_GET["token"])) {
+            $adminController = new AdminController();
+            if ($adminController->getAdminCSRFToken() != $_GET["token"]) {
+                return ["success" => false, "message" => "Invalid request."];
+            }
+            if (!is_numeric($_GET["ban"]) || $_GET["ban"] < 1) {
+                return ["success" => false, "message" => "Invalid banner ad."];
+            }
+			$query = 'UPDATE ' . $this->shortenLinkTable . ' SET status = 3 WHERE id = ? LIMIT 1';
+			$handler = $this->getDBConnection()->prepare($query);
+			$handler->bindValue(1, $this->filter($_GET["ban"]));
+			$handler->execute();
+            return ["success" => true, "message" => "Banner ad has been banned."];
+        }
+    }
+    public function linkStatus()
+    {
+        return ["Pending", "Approved", "Banned"];
+    }
 	public function addShortenLink($username, $membershipId)
 	{
 		if (isset($_POST['website_link']) && isset($_POST['csrf_token'])) {
@@ -307,6 +362,9 @@ class LinkTracker extends Model
 				exit('Invalid tracking link... ');
 			}
 			else {
+				if ($shortenCodeDetails['status'] != 2) {
+					exit("This link is ". $this->linkStatus()[$shortenCodeDetails['status'] - 1]);
+				}
 				$visitor_ip = $_SERVER['REMOTE_ADDR'];
 				$parsed_url = parse_url($_SERVER['HTTP_REFERER']);
 

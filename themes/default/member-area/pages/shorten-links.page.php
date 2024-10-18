@@ -32,6 +32,7 @@ $membersController->generateUserCSRFToken();
                                 <td>Actual Link</td>
                                 <td>Created At</td>
                                 <td>Total Visits</td>
+                                <td>status</td>
                                 <td></td>
                                 <td></td>
                             </thead>
@@ -51,6 +52,15 @@ $membersController->generateUserCSRFToken();
                                 </td>
                                 <td>
                                     <?= $linkDetails["total_visits"] ?>
+                                </td>
+                                <td>
+                                    <?php if ($linkDetails["status"] == 2) : ?>
+                                        <span class="badge bg-success"><?= $linkTrackerController->linkStatus()[$linkDetails["status"] - 1] ?></span>
+                                    <?php elseif ($linkDetails["status"] == 1) : ?>
+                                        <span class="badge bg-warning"><?= $linkTrackerController->linkStatus()[$linkDetails["status"] - 1] ?></span>
+                                    <?php elseif ($linkDetails["status"] == 3) : ?>
+                                        <span class="badge bg-danger"><?= $linkTrackerController->linkStatus()[$linkDetails["status"] - 1] ?></span>
+                                    <?php endif; ?>
                                 </td>
                                 <td>
                                     <a href="link-tracker.php?details=<?= $linkDetails['shorten_code'] ?>">
