@@ -28,7 +28,20 @@ class CoopUrlsModel extends Model
     }
     public function coopUrlsList($limit, $offset)
     {
-        return $this->getAll($this->table, $limit, $offset, "DESC");
+        return $this->getAllByStatus($this->table, $limit, $offset, "ASC");
+    }
+    public function lastCoopUrlsList($limit)
+    {
+        $query = "SELECT * FROM " . $this->table . " WHERE credits != 0 AND status = 2 ORDER BY updated_at ASC LIMIT ".$limit;
+        $handler = $this->getDBConnection()->prepare($query);
+        $handler->execute();
+        $bannerData = $handler->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($bannerData)) {
+            $query = "UPDATE " . $this->table . " SET credits = credits - 1, total_views = total_views + 1 WHERE credits != 0 AND status = 2 ORDER BY updated_at ASC LIMIT ".$limit;
+            $handler = $this->getDBConnection()->prepare($query);
+            $handler->execute();
+            return $bannerData;
+        }
     }
     public function userCoopUrlsList($limit, $offset, $username)
     {
@@ -40,7 +53,7 @@ class CoopUrlsModel extends Model
     }
     public function getCoopUrl()
     {
-        $query = "SELECT * FROM " . $this->table . " WHERE credits != 0 AND status = 1 ORDER BY RAND() LIMIT 1";
+        $query = "SELECT * FROM " . $this->table . " WHERE credits != 0 AND status = 2 ORDER BY RAND() LIMIT 1";
         $handler = $this->getDBConnection()->prepare($query);
         $handler->execute();
         $bannerData = $handler->fetch(PDO::FETCH_ASSOC);

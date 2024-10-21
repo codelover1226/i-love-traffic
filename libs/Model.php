@@ -39,6 +39,20 @@ class Model extends dataFilter
         }
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    protected function getAllByStatus($table, $limit, $offset, $sort, $column = NULL, $column_value = NULL)
+    {
+        if ($column_value != NULL && $column != NULL) {
+            $query = "SELECT * FROM " . $table . " WHERE " . $column . " = ? ORDER BY id " . $sort . " LIMIT " . $limit . " OFFSET " . $offset;
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(1, $this->filter($column_value));
+            $stmt->execute();
+        } else {
+            $query = "SELECT * FROM " . $table . " ORDER BY status " . $sort . " LIMIT " . $limit . " OFFSET " . $offset;
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+        }
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     protected function deleteData($table, $column_value, $column = "id")
     {
         $query = "DELETE FROM " . $table . " WHERE " . $column . " = ?";

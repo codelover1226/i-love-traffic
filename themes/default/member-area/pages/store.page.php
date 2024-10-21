@@ -255,7 +255,7 @@ $membershipsList = $membershipsController->getActiveMembershipsList();
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
+                <div class="col-lg-12 d-none">
                     <div class="card border border-primary">
                         <div class="card-header bg-transparent border-primary">
                             <h5 class="my-0 text-primary"><i class="mdi mdi-bullseye-arrow me-3"></i>Combo Offers</h5>

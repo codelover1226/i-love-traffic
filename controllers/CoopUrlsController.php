@@ -36,9 +36,13 @@ class CoopUrlsController extends Controller
         }
         return $this->model->coopUrlsList(30, $offset);
     }
+    public function lastCoopUrlsList($limit)
+    {
+        return $this->model->lastCoopUrlsList($limit);
+    }
     public function coopUrlsPgination()
     {
-        return $this->pagination(30, $this->totalCoopUrls(), "web-banner-ads.php");
+        return $this->pagination(30, $this->totalCoopUrls(), "web-coop-urls.php");
     }
     public function totalCoopUrls()
     {

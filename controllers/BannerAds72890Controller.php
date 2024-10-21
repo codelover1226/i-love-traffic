@@ -38,7 +38,7 @@ class BannerAds72890Controller extends Controller
     }
     public function bannerAdsPgination()
     {
-        return $this->pagination(30, $this->totalBannerAds(), "web-banner-ads.php");
+        return $this->pagination(30, $this->totalBannerAds(), "web-banner-ads-728-90.php");
     }
     public function totalBannerAds()
     {
