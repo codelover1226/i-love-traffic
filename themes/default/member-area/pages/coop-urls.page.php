@@ -44,7 +44,7 @@ function formatNumberDigits($number) {
                                 <td>Link</td>
                                 <td>Credits</td>
                                 <td>Views</td>
-                                <td>Clicks</td>
+                                <!-- <td>Clicks</td> -->
                                 <td>Status</td>
                                 <td></td>
                             </thead>
@@ -57,7 +57,7 @@ function formatNumberDigits($number) {
                                 </td>
                                 <td><?= $adData["credits"] ?></td>
                                 <td><?= formatNumberDigits($adData["total_views"]) ?></td>
-                                <td><?= formatNumberDigits($adData["total_clicks"]) ?></td>
+                                <!-- <td><?= formatNumberDigits($adData["total_clicks"]) ?></td> -->
                                 <td>
                                     <?php if ($adData["status"] == 2) : ?>
                                         <span class="badge bg-success"><?= $coopUrlsController->adStatus()[$adData["status"] - 1] ?></span>

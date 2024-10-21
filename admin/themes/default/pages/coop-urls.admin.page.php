@@ -55,7 +55,7 @@ $adminController->adminCSRFTokenGen();
                                 <th>Coop Link</th>
                                 <th>Credits</th>
                                 <th>Views</th>
-                                <th>Clicks</th>
+                                <!-- <th>Clicks</th> -->
                                 <th>Creation Date</th>
                                 <th>Status</th>
                                 <th></th>
@@ -69,7 +69,7 @@ $adminController->adminCSRFTokenGen();
                                         <td><a href="<?= $adData['ad_link'] ?>" target="_blank" x-tooltip="<?= $adData['ad_link'] ?>"><?= $adData["ad_link"] ?></a></td>
                                         <td><?= $adData["credits"] ?></td>
                                         <td><?= $adData["total_views"] ?></td>
-                                        <td><?= $adData["total_clicks"] ?></td>
+                                        <!-- <td><?= $adData["total_clicks"] ?></td> -->
                                         <td><?= date("d M, Y", $adData["creation_time"]) ?></td>
                                         <td>
                                             <?php if ($adData["status"] == 2) : ?>
