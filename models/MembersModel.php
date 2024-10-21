@@ -190,6 +190,13 @@ class MembersModel extends Model
         $handler->bindValue(1, $this->filter($username));
         return $handler->execute();
     }
+    public function deductMemberCoopUrlCredits($username, $amount)
+    {
+        $query = "UPDATE " . $this->table . " SET coop_url_credits = coop_url_credits - " . $amount . " WHERE username = ?";
+        $handler = $this->getDBConnection()->prepare($query);
+        $handler->bindValue(1, $this->filter($username));
+        return $handler->execute();
+    }
     public function deductMbmberBalance($username, $amount)
     {
         $query = "UPDATE " . $this->table . " SET balance = balance - " . $amount . " WHERE username = ?";
@@ -207,6 +214,13 @@ class MembersModel extends Model
     public function increaseMemberTextAdCredits($username, $amount)
     {
         $query = "UPDATE " . $this->table . " SET text_ad_credits = text_ad_credits + " . $amount . " WHERE username = ?";
+        $handler = $this->getDBConnection()->prepare($query);
+        $handler->bindValue(1, $this->filter($username));
+        return $handler->execute();
+    }
+    public function increaseMemberCoopUrlCredits($username, $amount)
+    {
+        $query = "UPDATE " . $this->table . " SET coop_url_credits = coop_url_credits + " . $amount . " WHERE username = ?";
         $handler = $this->getDBConnection()->prepare($query);
         $handler->bindValue(1, $this->filter($username));
         return $handler->execute();

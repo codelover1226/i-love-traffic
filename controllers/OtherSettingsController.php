@@ -22,6 +22,10 @@ class OtherSettingsController extends Controller
     {
         return $this->model->getSettingsValue("banner_credit_conversation");
     }
+    public function getCoopUrlCreditConversation()
+    {
+        return $this->model->getSettingsValue("coop_credit_conversation");
+    }
     public function getLoginAdCreditConversation()
     {
         return $this->model->getSettingsValue("login_credit_conversation");
@@ -65,6 +69,27 @@ class OtherSettingsController extends Controller
                 return ["success" => false, "message" => "Conversation rate must be greater than 0."];
             }
             $this->model->updateSettings(["settings_value" => $_POST["login_credit_conversation"]], "login_credit_conversation");
+            return ["success" => true, "message" => "Conversation rate has been updated."];
+        }
+    }
+    public function updateCoopCreditConvesationRate()
+    {
+        if (isset($_POST["coop_credit_conversation"]) && isset($_POST["admin_csrf_token"])) {
+            $array_flag = false;
+            if ($this->arrayCheck($_POST)) {
+                return ["success" => false, "message" => "You have sent an array. We don't allow array here."];
+            }
+            $adminController = new AdminController();
+            if (empty($_POST["coop_credit_conversation"]) || empty($_POST["admin_csrf_token"])) {
+                return ["success" => false, "message" => "All fields are required."];
+            }
+            if ($_POST["admin_csrf_token"] != $adminController->getAdminCSRFToken()) {
+                return ["success" => false, "message" => "Invalid request."];
+            }
+            if (!is_numeric($_POST["coop_credit_conversation"]) || $_POST["coop_credit_conversation"] < 1) {
+                return ["success" => false, "message" => "Conversation rate must be greater than 0."];
+            }
+            $this->model->updateSettings(["settings_value" => $_POST["coop_credit_conversation"]], "coop_credit_conversation");
             return ["success" => true, "message" => "Conversation rate has been updated."];
         }
     }

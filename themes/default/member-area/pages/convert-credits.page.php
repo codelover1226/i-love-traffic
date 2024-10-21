@@ -9,12 +9,15 @@ require_once "themes/default/member-area/incs/header.inc.php";
 $textAdConversationRate = $otherSettingsController->getTextAdCreditConversation();
 $loginAdConversationRate = $otherSettingsController->getloginAdCreditConversation();
 $bannerAdConversationRate = $otherSettingsController->getBannerCreditConversation();
+$coopUrlConversationRate = $otherSettingsController->getCoopUrlCreditConversation();
 if (isset($_POST["text_ad_credit"])) {
     $flag = $membersController->convertCreditToTextAdCredits($username, $userInfo, $textAdConversationRate["settings_value"]);
 } else if (isset($_POST["banner_ad_credit"])) {
     $flag = $membersController->convertCreditToBannerCredits($username, $userInfo, $bannerAdConversationRate["settings_value"]);
 } else if (isset($_POST["login_ad_credit"])) {
     $flag = $membersController->convertCreditTologinAdCredits($username, $userInfo, $loginAdConversationRate["settings_value"]);
+}else if (isset($_POST["coop_credit"])) {
+    $flag = $membersController->convertCreditToCoopUrlCredits($username, $userInfo, $coopUrlConversationRate["settings_value"]);
 }
 $membersController->generateUserCSRFToken();
 ?>
@@ -46,8 +49,7 @@ $membersController->generateUserCSRFToken();
                                     <input
                                         type="hidden"
                                         name="csrf_token"
-                                        value="<?= $membersController->getUserCSRFToken() ?>"
-                                        ">
+                                        value="<?= $membersController->getUserCSRFToken() ?>">
                                     <div class=" form-group">
                                         <label>Credit Amount</label>
                                         <input
@@ -122,6 +124,38 @@ $membersController->generateUserCSRFToken();
                                             </div><br>
                                             <div class="form-group">
                                                 <button class="btn btn-primary" name="login_ad_credit">Convert</button>
+                                            </div>
+
+                                        </form>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card border border-info">
+                                <div class="card-header bg-transparent border-dark">
+                                    <h5 class="my-0 text-info">
+                                        <i class="mdi mdi-bullseye-arrow me-3"></i>Convert Email Credits into Coop Url Credits</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="alert alert-warning"><?= $coopUrlConversationRate["settings_value"] ?>
+                                        Credits equal to 1 Coop Credit</div>
+                                    <p class="card-text">
+                                        <form action="" method="POST" accept-charset="utf-8">
+                                            <input
+                                                type="hidden"
+                                                name="csrf_token"
+                                                value="<?= $membersController->getUserCSRFToken() ?>">
+                                            <div class=" form-group">
+                                                <label>Credit Amount</label>
+                                                <input
+                                                    type="number"
+                                                    name="credit_amount"
+                                                    class="form-control"
+                                                    placeholder="How many coop credits do you want to create ?">
+                                            </div><br>
+                                            <div class="form-group">
+                                                <button class="btn btn-primary" name="coop_credit">Convert</button>
                                             </div>
 
                                         </form>

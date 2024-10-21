@@ -230,6 +230,7 @@ $adminController->verifyLogin("index");
                                 <?php include_once "themes/default/incs/sub-menus/banner-ads.menu.php"; ?>
                                 <?php include_once "themes/default/incs/sub-menus/text-ads.menu.php"; ?>
                                 <?php include_once "themes/default/incs/sub-menus/login-spotlight.menu.php"; ?>
+                                <?php include_once "themes/default/incs/sub-menus/coop-credits.menu.php"; ?>
                                 <?php include_once "themes/default/incs/sub-menus/admin-ads.menu.php"; ?>
 
                             </ul>

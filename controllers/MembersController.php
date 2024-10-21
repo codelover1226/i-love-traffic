@@ -484,6 +484,18 @@ class MembersController extends Controller
         }
         $this->model->deductMemberLoginAdCredits($username, $amount);
     }
+    public function deductMemberCoopUrlCredits($username, $amount)
+    {
+        $userDetails = $this->getUserDetails($username);
+        if ($userDetails["coop_url_credits"] < $amount) {
+            $amount = $userDetails["coop_url_credits"];
+        }
+        $this->model->deductMemberCoopUrlCredits($username, $amount);
+    }
+    public function increaseMemberCoopUrlCredits($username, $amount)
+    {
+        return $this->model->increaseMemberCoopUrlCredits($username, $amount);
+    }
     public function increaseMemberTextAdCredits($username, $amount)
     {
         return $this->model->increaseMemberTextAdCredits($username, $amount);
@@ -910,6 +922,30 @@ class MembersController extends Controller
             $this->increaseMemberLoginAdCredits($username, $_POST["credit_amount"]);
             $this->deductMemberCredits($username, intval($_POST["credit_amount"]) * $conversationRate);
             return ["success" => true, "message" => intval($_POST["credit_amount"]) * $conversationRate . " email credit(s) has been converted to " . $totalCredits . " login ad credits."];
+        }
+    }
+    public function convertCreditToCoopUrlCredits($username, $userDetails, $conversationRate)
+    {
+        if (isset($_POST["coop_credit"]) && isset($_POST["credit_amount"]) && isset($_POST["csrf_token"])) {
+            if ($this->arrayCheck($_POST)) {
+                return ["success" => false, "message" => "Array not allowed here."];
+            }
+            if (empty($_POST["credit_amount"]) || empty($_POST["csrf_token"])) {
+                return ["success" => false, "message" => "Please enter credit amount."];
+            }
+            if ($_POST["csrf_token"] != $this->getUserCSRFToken()) {
+                return ["success" => false, "message" => "Invalid request."];
+            }
+            if (!is_numeric($_POST["credit_amount"]) || $_POST["credit_amount"] < 1) {
+                return ["success" => false, "message" => "Invalid credit amount."];
+            }
+            if ($userDetails["credits"] < intval($_POST["credit_amount"]) * $conversationRate) {
+                return ["success" => false, "message" => "You don't have " . $_POST["credit_amount"] * $conversationRate . " credits. Currently you have " . $userDetails["credits"]];
+            }
+            $totalCredits = intval($_POST["credit_amount"]);
+            $this->increaseMemberCoopUrlCredits($username, $_POST["credit_amount"]);
+            $this->deductMemberCredits($username, intval($_POST["credit_amount"]) * $conversationRate);
+            return ["success" => true, "message" => intval($_POST["credit_amount"]) * $conversationRate . " email credit(s) has been converted to " . $totalCredits . " coop url credits."];
         }
     }
     public function convertCreditToBannerCredits($username, $userDetails, $conversationRate)

@@ -285,6 +285,7 @@ if (isset($_GET["action"]) && $_GET["action"] == "offer-page") {
  </ul>
  </div>
  </li>
+ <?php include_once "themes/default/member-area/incs/sub-menus/coop-urls.menu.php"; ?>
 <?php include_once "themes/default/member-area/incs/sub-menus/468x60.menu.php"; ?>
 <?php include_once "themes/default/member-area/incs/sub-menus/160x600.menu.php"; ?>
 <?php include_once "themes/default/member-area/incs/sub-menus/728x90.menu.php"; ?>

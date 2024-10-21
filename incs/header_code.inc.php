@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && strcmp(basename($currentPage), basena
 require_once "load_classes.php";
 $siteSettings = new SiteSettingsController();
 $bannerAdController = new BannerAdsController();
+$coopUrlsController = new CoopUrlsController();
 $bannerAd160600Controller = new BannerAds160600Controller();
 $bannerAd72890Controller = new BannerAds72890Controller();
 $bannerAd600400Controller = new BannerAds600400Controller();
