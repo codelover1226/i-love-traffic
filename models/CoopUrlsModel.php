@@ -30,6 +30,19 @@ class CoopUrlsModel extends Model
     {
         return $this->getAllByStatus($this->table, $limit, $offset, "ASC");
     }
+    public function lastCoopUrl()
+    {
+        $query = "SELECT * FROM " . $this->table . " WHERE credits != 0 AND status = 2 ORDER BY updated_at LIMIT 1";
+        $handler = $this->getDBConnection()->prepare($query);
+        $handler->execute();
+        $coopUrl = $handler->fetch(PDO::FETCH_ASSOC);
+        if (!empty($coopUrl)) {
+            $query = "UPDATE " . $this->table . " SET credits = credits - 1, total_views = total_views + 1, updated_at = NOW() WHERE id = " . $coopUrl["id"];
+            $handler = $this->getDBConnection()->prepare($query);
+            $handler->execute();
+            return $coopUrl;
+        }
+    }
     public function lastCoopUrlsList($limit)
     {
         $query = "SELECT * FROM " . $this->table . " WHERE credits != 0 AND status = 2 ORDER BY updated_at ASC LIMIT ".$limit;

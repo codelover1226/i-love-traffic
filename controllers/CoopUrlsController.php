@@ -36,6 +36,10 @@ class CoopUrlsController extends Controller
         }
         return $this->model->coopUrlsList(30, $offset);
     }
+    public function lastCoopUrl()
+    {
+        return $this->model->lastCoopUrl();
+    }
     public function lastCoopUrlsList($limit)
     {
         return $this->model->lastCoopUrlsList($limit);
