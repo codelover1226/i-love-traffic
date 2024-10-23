@@ -104,14 +104,14 @@ $adminController->adminCSRFTokenGen();
                                                     </a>
                                                     <ul x-cloak x-show="open" x-transition x-transition.duration.300ms class="ltr:right-0 rtl:left-0">
                                                         <?php if ($bannerAd["status"] != 1) : ?>
-                                                            <li><a class="dropdown-item" href="web-banner-ads.php?activate=<?= $bannerAd['id'] ?>&token=<?= $adminController->getAdminCSRFToken() ?>">Activate Ad</a></li>
+                                                            <li><a class="dropdown-item" href="web-banner-ads-600-400.php?activate=<?= $bannerAd['id'] ?>&token=<?= $adminController->getAdminCSRFToken() ?>">Activate Ad</a></li>
 
                                                         <?php endif; ?>
                                                         <?php if ($bannerAd["status"] != 2) : ?>
-                                                            <li><a class="dropdown-item" href="web-banner-ads.php?pause=<?= $bannerAd['id'] ?>&token=<?= $adminController->getAdminCSRFToken() ?>">Pause Ad</a></li>
+                                                            <li><a class="dropdown-item" href="web-banner-ads-600-400.php?pause=<?= $bannerAd['id'] ?>&token=<?= $adminController->getAdminCSRFToken() ?>">Pause Ad</a></li>
                                                         <?php endif; ?>
                                                         <?php if ($bannerAd["status"] != 3) : ?>
-                                                            <li><a class="dropdown-item" href="web-banner-ads.php?ban=<?= $bannerAd['id'] ?>&token=<?= $adminController->getAdminCSRFToken() ?>">Ban Ad</a></li>
+                                                            <li><a class="dropdown-item" href="web-banner-ads-600-400.php?ban=<?= $bannerAd['id'] ?>&token=<?= $adminController->getAdminCSRFToken() ?>">Ban Ad</a></li>
                                                         <?php endif; ?>
                                                     </ul>
                                                 </div>

@@ -40,7 +40,9 @@ $membersController->generateUserCSRFToken();
                                     <div class=" form-group">
                             <label>Email Subscription</label>
                             <select name="subscription" class="form-control">
-                                <option value="1" <?= $userInfo["account_status"] == 1 ? "selected" : "" ?>>Enable</option>
+                                <option value="1" <?= $userInfo["account_status"] == 1 ? "selected" : "" ?>>Both</option>
+                                <option value="3" <?= $userInfo["account_status"] == 3 ? "selected" : "" ?>>Only Email</option>
+                                <option value="3" <?= $userInfo["account_status"] == 3 ? "selected" : "" ?>>Only Onsite mail</option>
                                 <option value="3" <?= $userInfo["account_status"] == 3 ? "selected" : "" ?>>Disable</option>
                             </select>
                         </div><br>

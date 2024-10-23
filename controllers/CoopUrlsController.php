@@ -13,11 +13,80 @@ if (file_exists("load_classes.php")) {
 }
 class CoopUrlsController extends Controller
 {
+    private $db;
     private $model;
+    private $coopUrlClicksTable = "ntk_coop_url_clicks";
+
     public function __construct()
     {
         $this->model = new CoopUrlsModel();
+        $this->db = dbConnection::getDBInstance();
     }
+
+	public function coopUrlClicksOrigin($id, $username)
+	{
+		$query = 'SELECT *, COUNT(*) as total_clicks FROM ' . $this->coopUrlClicksTable . ' ' . "\n" . '        WHERE id = ? AND username = ? GROUP BY visitor_origin ORDER BY total_clicks DESC';
+		$handler = $this->getDBConnection()->prepare($query);
+		$handler->bindValue(1, $this->model->filter($id));
+		$handler->bindValue(2, $this->model->filter($username));
+		$handler->execute();
+		return $handler->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+    public function coopUrlClicksCountry($id, $username)
+    {
+        $query = "SELECT *, COUNT(*) as total_clicks FROM " . $this->coopUrlClicksTable . " \n        WHERE coop_url_id = ? AND username = ? GROUP BY visitor_country ORDER BY total_clicks DESC";
+        $handler = $this->getDBConnection()->prepare($query);
+        $handler->bindValue(1, $this->model->filter($id));
+        $handler->bindValue(2, $this->model->filter($username));
+        $handler->execute();
+        return $handler->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function trackingSystem($coopUrl)
+    {
+        $visitor_ip = $_SERVER['REMOTE_ADDR'];
+        $parsed_url = parse_url($_SERVER['HTTP_REFERER']);
+
+        // Get the host/domain name
+        if (isset($parsed_url['host'])) {
+            $visitor_origin = $parsed_url['host'];
+            // echo $domain; // Output: i-lovetraffic.online
+        } else {
+            $visitor_origin = "unknown/direct";
+            // echo "Host not found in the URL.";
+        }
+
+        $api_link = 'http://ip-api.com/php/' . $_SERVER['REMOTE_ADDR'];
+
+        if (!function_exists('curl_init')) {
+            exit('CURL is not installed!');
+        }
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_link);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $output = curl_exec($ch);
+        curl_close($ch);
+        $ip_info = @unserialize($output);
+        $user_country = '';
+        if ($ip_info && ($ip_info['status'] == 'success')) {
+            $user_country = $ip_info['country'];
+        }
+
+        $this->insertData($this->coopUrlClicksTable, ['coop_url_id' => $coopUrl['id'], 'username' => $coopUrl['username'], 'visitor_country' => $user_country, 'visitor_origin' => $visitor_origin, 'visitor_ip' => $visitor_ip, 'visitor_timestamp' => time()]);
+    }
+    protected function insertData($table, $datas)
+    {
+        $data_keys = array_keys($datas);
+        $data_values = array_values($datas);
+        $query = "INSERT INTO " . $table . " (id ," . implode(", ", $data_keys) . ") VALUES (NULL, " . implode(", ", array_fill(0, count($data_values), "?")) . ")";
+        $stmt = $this->db->prepare($query);
+        for ($i = 0; $i < count($data_values); $i++) {
+            $data_values[$i] = $this->model->filter($data_values[$i]);
+        }
+        return $stmt->execute($data_values);
+    }
+
     public function CoopUrlsList()
     {
         $offset = 0;
@@ -325,6 +394,10 @@ class CoopUrlsController extends Controller
             $this->model->addCoopUrl(["username" => $username, "ad_link" => $_POST["ad_link"], "credits" => 0, "total_views" => 0, "total_clicks" => 0, "creation_time" => time(), "status" => 1]);
             return ["success" => true, "message" => "Your coop url has been added and pended. Now you can assign credits."];
         }
+    }
+    protected function getDBConnection()
+    {
+        return $this->db;
     }
 }
 

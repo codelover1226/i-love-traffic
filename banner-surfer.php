@@ -1,6 +1,11 @@
 <?php
 require_once "load_classes.php";
 $bannerAdController = new BannerAdsController();
+$bannerAd72890Controller = new BannerAds72890Controller();
+$bannerAd160600Controller = new BannerAds160600Controller();
+$bannerAd600400Controller = new BannerAds600400Controller();
+$bannerAdController = new BannerAdsController();
+$bannerAdController = new BannerAdsController();
 $smallBannerAdController = new SmallBannerAdsController();
 $siteController = new SiteSettingsController();
 $siteSettings = $siteController->getSettings();
@@ -11,9 +16,30 @@ if (isset($_GET["size"]) && $_GET["size"] == "small" && isset($_GET["user"])) {
         $bannerPublisherController = new BannerPublisherController();
         $bannerPublisherController->giveCredits($_GET["user"]);
     }
-} else {
+} else if (isset($_GET["size"]) && $_GET["size"] == "web") {
     $flag = 0;
     $bannerDetails = $bannerAdController->getRandomBannerAdDetails();
+    if (!empty($bannerDetails)) {
+        $bannerPublisherController = new BannerPublisherController();
+        $bannerPublisherController->giveCredits($_GET["user"]);
+    }
+} else if (isset($_GET["size"]) && $_GET["size"] == "web728") {
+    $flag = 0;
+    $bannerDetails = $bannerAd72890Controller->getRandomBannerAdDetails();
+    if (!empty($bannerDetails)) {
+        $bannerPublisherController = new BannerPublisherController();
+        $bannerPublisherController->giveCredits($_GET["user"]);
+    }
+} else if (isset($_GET["size"]) && $_GET["size"] == "web600") {
+    $flag = 0;
+    $bannerDetails = $bannerAd600400Controller->getRandomBannerAdDetails();
+    if (!empty($bannerDetails)) {
+        $bannerPublisherController = new BannerPublisherController();
+        $bannerPublisherController->giveCredits($_GET["user"]);
+    }
+} else if (isset($_GET["size"]) && $_GET["size"] == "web160") {
+    $flag = 0;
+    $bannerDetails = $bannerAd160600Controller->getRandomBannerAdDetails();
     if (!empty($bannerDetails)) {
         $bannerPublisherController = new BannerPublisherController();
         $bannerPublisherController->giveCredits($_GET["user"]);

@@ -30,7 +30,7 @@ $membersController->generateUserCSRFToken();
                         <div class="card-body">
                             <p class="card-text">
                             <form action="" method="POST" accept-charset="utf-8">
-                                <input type="hidden" name="csrf_token" value="<?= $membersController->getUserCSRFToken() ?>"">
+                                <input type="hidden" name="csrf_token" value="<?= $membersController->getUserCSRFToken() ?>">
                                     <div class=" form-group">
                                 <label>Banner Link</label>
                                 <input type="url" name="image_link" class="form-control" placeholder="Your 160x600 banner link">

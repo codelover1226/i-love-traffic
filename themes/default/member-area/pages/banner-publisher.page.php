@@ -29,6 +29,31 @@ $membersController->generateUserCSRFToken();
                                 <textarea class="form-control"> &lt;iframe frameborder="0" scrolling="no" width="468" height="60" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="<?= $siteSettingsData['installation_url'] . 'banner-surfer.php?size=web&user=' . $userInfo['username'] ?>" &gt;&lt;/iframe&gt; </textarea>
                                 <span class="badge border border-danger text-primary" style="margin: 10px;">468x60 Banner Preview</span><br>
                                 <iframe frameborder="0" scrolling="no" width="468" height="60" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="<?= $siteSettingsData['installation_url'] . 'banner-surfer.php?size=web&user=' ?>"> </iframe>
+                                
+                                <br>
+                                <span class="badge border border-primary text-primary" style="margin: 10px;">728x90 Banner Code</span><br>
+                                <textarea class="form-control"> &lt;iframe frameborder="0" scrolling="no" width="728" height="90" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="<?= $siteSettingsData['installation_url'] . 'banner-surfer.php?size=web728&user=' . $userInfo['username'] ?>" &gt;&lt;/iframe&gt; </textarea>
+                                <span class="badge border border-danger text-primary" style="margin: 10px;">728x90 Banner Preview</span><br>
+                                <iframe frameborder="0" scrolling="no" width="728" height="90" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="<?= $siteSettingsData['installation_url'] . 'banner-surfer.php?size=web728&user=' ?>"> </iframe>
+                                
+                                <br>
+                                <span class="badge border border-primary text-primary" style="margin: 10px;">600x400 Banner Code</span><br>
+                                <textarea class="form-control"> &lt;iframe frameborder="0" scrolling="no" width="600" height="400" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="<?= $siteSettingsData['installation_url'] . 'banner-surfer.php?size=web600&user=' . $userInfo['username'] ?>" &gt;&lt;/iframe&gt; </textarea>
+                                <span class="badge border border-danger text-primary" style="margin: 10px;">400 Banner Preview</span><br>
+                                <iframe frameborder="0" scrolling="no" width="600" height="400" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="<?= $siteSettingsData['installation_url'] . 'banner-surfer.php?size=web600&user=' ?>"> </iframe>
+                                
+                                <br>
+                                <span class="badge border border-primary text-primary" style="margin: 10px;">468x60 Banner Code</span><br>
+                                <textarea class="form-control"> &lt;iframe frameborder="0" scrolling="no" width="468" height="60" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="<?= $siteSettingsData['installation_url'] . 'banner-surfer.php?size=web&user=' . $userInfo['username'] ?>" &gt;&lt;/iframe&gt; </textarea>
+                                <span class="badge border border-danger text-primary" style="margin: 10px;">468x60 Banner Preview</span><br>
+                                <iframe frameborder="0" scrolling="no" width="468" height="60" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="<?= $siteSettingsData['installation_url'] . 'banner-surfer.php?size=web&user=' ?>"> </iframe>
+                                
+                                <br>
+                                <span class="badge border border-primary text-primary" style="margin: 10px;">160x600 Banner Code</span><br>
+                                <textarea class="form-control"> &lt;iframe frameborder="0" scrolling="no" width="160" height="600" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="<?= $siteSettingsData['installation_url'] . 'banner-surfer.php?size=web160&user=' . $userInfo['username'] ?>" &gt;&lt;/iframe&gt; </textarea>
+                                <span class="badge border border-danger text-primary" style="margin: 10px;">160x600 Banner Preview</span><br>
+                                <iframe frameborder="0" scrolling="no" width="160" height="600" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="<?= $siteSettingsData['installation_url'] . 'banner-surfer.php?size=web160&user=' ?>"> </iframe>
+                                
                                 <br>
                                 <span class="badge border border-primary text-primary" style="margin: 10px;">125x125 Banner Code</span><br>
                                 <textarea class="form-control"> &lt;iframe frameborder="0" scrolling="no" width="125" height="125" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="<?= $siteSettingsData['installation_url'] . 'banner-surfer.php?size=small&user=' . $userInfo['username'] ?>" &gt;&lt;/iframe&gt; </textarea>

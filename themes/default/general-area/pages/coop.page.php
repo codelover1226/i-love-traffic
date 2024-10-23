@@ -10,3 +10,4 @@ require_once "load_classes.php";
 $coopUrlsController = new CoopUrlsController();
 $coopUrl = $coopUrlsController->lastCoopUrl();
 header("Location: " . $coopUrl["ad_link"]);
+$coopUrlsController->trackingSystem($coopUrl);
